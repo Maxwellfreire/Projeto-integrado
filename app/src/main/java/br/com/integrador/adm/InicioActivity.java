@@ -46,7 +46,6 @@ public class InicioActivity extends AppCompatActivity {
     }
 
     public void btnCDesconto(View view) {
-
         startActivity(new Intent(this, CupomdescontoActivity.class));
     }
 }
