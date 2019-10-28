@@ -143,25 +143,19 @@ public class CadastroTActivity extends AppCompatActivity {
                     String Nome = setNomeTime.getText().toString();
                     String Paises = setPaisesTime.getText().toString();
 
-                    if (Nome.isEmpty() && Paises.isEmpty()) {
 
-                        //Toast.makeText(getApplicationContext(), "O campo 'Nome e Salario' esta vazio !", Toast.LENGTH_LONG).show();
-
-//                        Snackbar.make(v, "'Nome e Salario' esta vazio !", Snackbar.LENGTH_LONG)
-//                                .setAction("Action", null).show();
-
-
-                    } else {
+                    try {
 
                         String NomeTime, PaisTime;
 
                         String Estado = String.valueOf(setEstadoTime.getSelectedItem());
                         String Regiao = String.valueOf(setRegiaoTime.getSelectedItem());
                         String tipotime = String.valueOf(setTipoTimeTime.getSelectedItem());
+                        int timeLigas = Integer.parseInt(String.valueOf(setLigasTime.getSelectedItem()));
 
                         NomeTime = setNomeTime.getText().toString();
                         PaisTime = setPaisesTime.getText().toString();
-                        Time time = new Time(NomeTime, Regiao, Estado, PaisTime, tipotime, 4);
+                        Time time = new Time(NomeTime, Regiao, Estado, PaisTime, tipotime, timeLigas);
                         Retrofit retrofit = APIClient.getClient();
                         TimeResource timeResource = retrofit.create(TimeResource.class);
                         Call<Time> call = timeResource.post(time);
@@ -183,6 +177,11 @@ public class CadastroTActivity extends AppCompatActivity {
                         });
 
                         finish();
+
+                    } catch (Exception e) {
+
+                        Toast.makeText(getApplicationContext(), "Insira o ID da Liga referente!", Toast.LENGTH_LONG).show();
+
 
                     }
 
