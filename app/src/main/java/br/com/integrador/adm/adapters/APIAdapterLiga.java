@@ -75,7 +75,7 @@ public class APIAdapterLiga extends BaseAdapter {
         campoID = view.findViewById(R.id.getIDLiga);
         campoNOME = view.findViewById(R.id.getNomeLiga);
 
-        campoID.setText(Integer.toString(liga.getId()));
+        campoID.setText(Integer.toString(liga.getLigaId()));
         campoNOME.setText(liga.getName());
 
         view.setOnClickListener(new View.OnClickListener() {

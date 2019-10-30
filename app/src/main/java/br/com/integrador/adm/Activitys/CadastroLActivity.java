@@ -46,7 +46,7 @@ public class CadastroLActivity extends AppCompatActivity {
         if (ItemLiga != null) {
             txtLiga.setText("Atualizar Liga");
             btnSalvarLiga.setText("Alterar");
-            setIDLiga.setText(Integer.toString(ItemLiga.getId()));
+            setIDLiga.setText(Integer.toString(ItemLiga.getLigaId()));
             setNomeLiga.setText(ItemLiga.getName());
 
 
@@ -110,7 +110,7 @@ public class CadastroLActivity extends AppCompatActivity {
                 } else {
 
                     String NomeLiga;
-                    Integer ID = ItemLiga.getId();
+                    Integer ID = ItemLiga.getLigaId();
                     NomeLiga = setNomeLiga.getText().toString();
                     Liga liga = new Liga(NomeLiga);
                     Retrofit retrofit = APIClient.getClient();
@@ -149,7 +149,7 @@ public class CadastroLActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                final Integer ID = ItemLiga.getId();
+                final Integer ID = ItemLiga.getLigaId();
                 Retrofit retrofit = APIClient.getClient();
                 LigaResource ligaResource = retrofit.create(LigaResource.class);
                 Call<Void> call = ligaResource.delete(ID);

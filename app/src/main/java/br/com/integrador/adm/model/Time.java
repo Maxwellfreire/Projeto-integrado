@@ -11,8 +11,7 @@ public class Time implements Serializable {
     private String pais;
     private String tipoTime;
     private Integer ligaId;
-    private Integer id;
-    private String name;
+
 
     public Time() {
     }
@@ -82,22 +81,6 @@ public class Time implements Serializable {
         this.ligaId = ligaId;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public String toString() {
         return "Time{" +
@@ -108,8 +91,6 @@ public class Time implements Serializable {
                 ", pais='" + pais + '\'' +
                 ", tipoTime='" + tipoTime + '\'' +
                 ", ligaId=" + ligaId +
-                ", id=" + id +
-                ", name='" + name + '\'' +
                 '}';
     }
 }

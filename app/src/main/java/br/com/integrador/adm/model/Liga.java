@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Liga implements Serializable {
 
-    private Integer id;
+    private Integer ligaId;
     private String name;
 
     public Liga() {
@@ -14,12 +14,12 @@ public class Liga implements Serializable {
         this.name = name;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getLigaId() {
+        return ligaId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setLigaId(Integer ligaId) {
+        this.ligaId = ligaId;
     }
 
     public String getName() {
@@ -32,9 +32,6 @@ public class Liga implements Serializable {
 
     @Override
     public String toString() {
-        return "Marca{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return  name ;
     }
 }

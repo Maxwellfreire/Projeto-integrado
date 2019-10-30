@@ -14,11 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import br.com.integrador.adm.R;
-import br.com.integrador.adm.adapters.APIAdapterLiga;
 import br.com.integrador.adm.boostrap.APIClient;
 import br.com.integrador.adm.model.Liga;
 import br.com.integrador.adm.model.Time;
@@ -38,11 +36,8 @@ public class CadastroTActivity extends AppCompatActivity {
 
     Spinner setEstadoTime, setRegiaoTime, setTipoTimeTime, setLigasTime, regiaoS, estadoS, tipotimeS, ligasdotime;
 
-    String[] SpinnerEstado = {"Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal",
-            "Espírito Santo", "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul",
-            "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro",
-            "Rio Grande do Norte", "Rio Grande do Sul",
-            "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"};
+    String[] SpinnerEstado = {"AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT",
+            "MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"};
     String[] SpinnerRegiao = {"Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"};
 
     String[] SpinnerTipodotime = {"Nacional", "Seleção", "Internacional"};
@@ -98,11 +93,7 @@ public class CadastroTActivity extends AppCompatActivity {
             regiaoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             regiaoS.setAdapter(regiaoAdapter);
 
-            String[] estado = {ItemTime.getEstado(), "Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal",
-                    "Espírito Santo", "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul",
-                    "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro",
-                    "Rio Grande do Norte", "Rio Grande do Sul",
-                    "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"};
+            String[] estado = {ItemTime.getEstado(), "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"};
             estadoS = (Spinner) findViewById(R.id.setEstadoTime);
             ArrayAdapter<String> estadoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, estado);
             estadoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -291,12 +282,12 @@ public class CadastroTActivity extends AppCompatActivity {
 
                 Spinner spinnerLigas = (Spinner) findViewById(R.id.setLigasTime);
                 List<Liga> ligas = response.body();
-                List<String> listaLigas = new ArrayList<String>();
-                for (Liga liga : ligas) {
-                    listaLigas.add(String.valueOf(liga.getId()));
-                    listaLigas.add(liga.getName());
-                }
-                ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(CadastroTActivity.this, android.R.layout.simple_list_item_1, listaLigas);
+//                List<Liga> listaLigas = new ArrayList<Liga>();
+//                for (Liga liga : ligas) {
+////                    listaLigas.add(String.valueOf(liga.getLigaId()));
+//                    listaLigas.add(liga);
+//                }
+                ArrayAdapter<Liga> adapterSpinner = new ArrayAdapter<Liga>(CadastroTActivity.this, android.R.layout.simple_list_item_1, ligas);
                 spinnerLigas.setAdapter(adapterSpinner);
 
 

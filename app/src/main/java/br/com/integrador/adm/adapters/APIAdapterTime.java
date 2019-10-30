@@ -86,7 +86,7 @@ public class APIAdapterTime extends BaseAdapter {
         campoESTADO.setText(time.getEstado());
         campoPAIS.setText(time.getPais());
         campoTIPOTIME.setText(time.getTipoTime());
-        campoLIGA.setText(time.getName());
+        campoLIGA.setText(Integer.toString(time.getLigaId()));
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
