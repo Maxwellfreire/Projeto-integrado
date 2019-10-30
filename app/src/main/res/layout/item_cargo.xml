@@ -6,32 +6,34 @@
     android:orientation="horizontal">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon" />
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="ID: "
+                android:text="Código: "
                 android:textColor="#111111"
-                android:textSize="7pt" />
+                android:textSize="9pt" />
 
             <TextView
+                android:textSize="9pt"
                 android:id="@+id/getIDCargo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -40,6 +42,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -50,9 +53,10 @@
                 android:layout_gravity="left"
                 android:text="Nome: "
                 android:textColor="#111111"
-                android:textSize="7pt" />
+                android:textSize="9pt" />
 
             <TextView
+                android:textSize="9pt"
                 android:id="@+id/getNomeCargo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,17 +68,19 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="left"
-                android:text="Salario: "
+                android:text="Salário: "
                 android:textColor="#111111"
-                android:textSize="7pt" />
+                android:textSize="9pt" />
 
             <TextView
+                android:textSize="9pt"
                 android:id="@+id/getSalarioCargo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -83,12 +89,11 @@
 
         </LinearLayout>
 
+        <TextView
 
-
-
-
-
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
 
     </LinearLayout>

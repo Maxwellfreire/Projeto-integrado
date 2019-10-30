@@ -6,40 +6,43 @@
     android:orientation="horizontal">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon" />
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="ID: "
+                android:text="Código: "
                 android:textColor="#111111"
-                android:textSize="7pt" />
+                android:textSize="9pt" />
 
             <TextView
                 android:id="@+id/getIDLiga"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="9pt" />
 
 
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -50,23 +53,23 @@
                 android:layout_gravity="left"
                 android:text="Nome: "
                 android:textColor="#111111"
-                android:textSize="7pt" />
+                android:textSize="9pt" />
 
             <TextView
                 android:id="@+id/getNomeLiga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="9pt" />
 
 
         </LinearLayout>
 
+        <TextView
 
-
-
-
-
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
 
     </LinearLayout>

@@ -32,6 +32,6 @@ public class Liga implements Serializable {
 
     @Override
     public String toString() {
-        return  name ;
+        return ligaId + " - " + name;
     }
 }

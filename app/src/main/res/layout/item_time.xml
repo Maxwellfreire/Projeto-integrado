@@ -19,7 +19,7 @@
 
 
         <LinearLayout
-            android:layout_marginLeft="150dp"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -28,11 +28,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="ID: "
+                android:text="Código: "
                 android:textColor="#111111"
-                android:textSize="7pt" />
+                android:textSize="8pt" />
 
             <TextView
+                android:textSize="8pt"
                 android:id="@+id/getIDTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -41,6 +42,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -51,9 +53,10 @@
                 android:layout_gravity="left"
                 android:text="Nome: "
                 android:textColor="#111111"
-                android:textSize="7pt" />
+                android:textSize="8pt" />
 
             <TextView
+                android:textSize="8pt"
                 android:id="@+id/getNomeTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,6 +66,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -73,9 +77,10 @@
                 android:layout_gravity="left"
                 android:text="Região: "
                 android:textColor="#111111"
-                android:textSize="7pt" />
+                android:textSize="8pt" />
 
             <TextView
+                android:textSize="8pt"
                 android:id="@+id/getRegiaoTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,6 +90,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -95,9 +101,10 @@
                 android:layout_gravity="left"
                 android:text="Estado: "
                 android:textColor="#111111"
-                android:textSize="7pt" />
+                android:textSize="8pt" />
 
             <TextView
+                android:textSize="8pt"
                 android:id="@+id/getEstadoTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,6 +114,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -117,9 +125,10 @@
                 android:layout_gravity="left"
                 android:text="País: "
                 android:textColor="#111111"
-                android:textSize="7pt" />
+                android:textSize="8pt" />
 
             <TextView
+                android:textSize="8pt"
                 android:id="@+id/getPaisTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -129,6 +138,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -139,9 +149,10 @@
                 android:layout_gravity="left"
                 android:text="Tipo time: "
                 android:textColor="#111111"
-                android:textSize="7pt" />
+                android:textSize="8pt" />
 
             <TextView
+                android:textSize="8pt"
                 android:id="@+id/getTipoTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -151,6 +162,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -161,9 +173,10 @@
                 android:layout_gravity="left"
                 android:text="Liga: "
                 android:textColor="#111111"
-                android:textSize="7pt" />
+                android:textSize="8pt" />
 
             <TextView
+                android:textSize="8pt"
                 android:id="@+id/getNomeLigaTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -9,11 +9,9 @@
     <TextView
         android:textColor="@color/Black"
         android:id="@+id/textView5"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
         android:text="Cupom desconto"
         android:textSize="11pt" />
 

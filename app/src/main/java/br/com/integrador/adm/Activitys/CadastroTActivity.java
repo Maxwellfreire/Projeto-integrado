@@ -36,8 +36,8 @@ public class CadastroTActivity extends AppCompatActivity {
 
     Spinner setEstadoTime, setRegiaoTime, setTipoTimeTime, setLigasTime, regiaoS, estadoS, tipotimeS, ligasdotime;
 
-    String[] SpinnerEstado = {"AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT",
-            "MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"};
+    String[] SpinnerEstado = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT",
+            "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
     String[] SpinnerRegiao = {"Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"};
 
     String[] SpinnerTipodotime = {"Nacional", "Seleção", "Internacional"};
@@ -93,7 +93,7 @@ public class CadastroTActivity extends AppCompatActivity {
             regiaoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             regiaoS.setAdapter(regiaoAdapter);
 
-            String[] estado = {ItemTime.getEstado(), "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"};
+            String[] estado = {ItemTime.getEstado(), "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
             estadoS = (Spinner) findViewById(R.id.setEstadoTime);
             ArrayAdapter<String> estadoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, estado);
             estadoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -131,102 +131,92 @@ public class CadastroTActivity extends AppCompatActivity {
 
                     setNomeTime = (EditText) findViewById(R.id.setNomeTime);
                     setPaisesTime = (EditText) findViewById(R.id.setPaisesTime);
-                    String Nome = setNomeTime.getText().toString();
-                    String Paises = setPaisesTime.getText().toString();
 
 
-                    try {
-
-                        String NomeTime, PaisTime;
-
-                        String Estado = String.valueOf(setEstadoTime.getSelectedItem());
-                        String Regiao = String.valueOf(setRegiaoTime.getSelectedItem());
-                        String tipotime = String.valueOf(setTipoTimeTime.getSelectedItem());
-                        int timeLigas = Integer.parseInt(String.valueOf(setLigasTime.getSelectedItem()));
-
-                        NomeTime = setNomeTime.getText().toString();
-                        PaisTime = setPaisesTime.getText().toString();
-                        Time time = new Time(NomeTime, Regiao, Estado, PaisTime, tipotime, timeLigas);
-                        Retrofit retrofit = APIClient.getClient();
-                        TimeResource timeResource = retrofit.create(TimeResource.class);
-                        Call<Time> call = timeResource.post(time);
-
-                        call.enqueue(new Callback<Time>() {
-                            @Override
-                            public void onResponse(Call<Time> call, Response<Time> response) {
-
-                                Toast.makeText(getApplicationContext(), "Time cadastrada com sucesso !", Toast.LENGTH_LONG).show();
+                    String NomeTime, PaisTime;
 
 
-                            }
+                    NomeTime = setNomeTime.getText().toString();
 
-                            @Override
-                            public void onFailure(Call<Time> call, Throwable t) {
-                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    String Regiao = String.valueOf(setRegiaoTime.getSelectedItem());
 
-                            }
-                        });
+                    String Estado = String.valueOf(setEstadoTime.getSelectedItem());
 
-                        finish();
+                    PaisTime = setPaisesTime.getText().toString();
 
-                    } catch (Exception e) {
+                    String tipotime = String.valueOf(setTipoTimeTime.getSelectedItem());
 
-                        Toast.makeText(getApplicationContext(), "Insira o ID da Liga referente!", Toast.LENGTH_LONG).show();
+                    Liga ligaSelecionada = (Liga) setLigasTime.getSelectedItem();
+                    int idSelecionado = ligaSelecionada.getLigaId();
+
+                    Time time = new Time(NomeTime, Regiao, Estado, PaisTime, tipotime, idSelecionado);
+                    Retrofit retrofit = APIClient.getClient();
+                    TimeResource timeResource = retrofit.create(TimeResource.class);
+                    Call<Time> call = timeResource.post(time);
+
+                    call.enqueue(new Callback<Time>() {
+                        @Override
+                        public void onResponse(Call<Time> call, Response<Time> response) {
+
+                            Toast.makeText(getApplicationContext(), "Time cadastrada com sucesso !", Toast.LENGTH_LONG).show();
 
 
-                    }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Time> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+                    finish();
 
 
                 } else {
 
 
-                    try {
+                    String NomeTime, PaisTime;
+                    Integer ID = ItemTime.getIdTime();
 
-                        String NomeTime, PaisTime;
-                        Integer ID = ItemTime.getIdTime();
+                    NomeTime = setNomeTime.getText().toString();
 
+                    String Regiao = String.valueOf(setRegiaoTime.getSelectedItem());
 
-                        String Regiao = String.valueOf(setRegiaoTime.getSelectedItem());
-                        String Estado = String.valueOf(setEstadoTime.getSelectedItem());
-                        String tipotime = String.valueOf(setTipoTimeTime.getSelectedItem());
-                        int timeLigas = Integer.parseInt(String.valueOf(setLigasTime.getSelectedItem()));
+                    String Estado = String.valueOf(setEstadoTime.getSelectedItem());
 
+                    PaisTime = setPaisesTime.getText().toString();
 
-                        NomeTime = setNomeTime.getText().toString();
-                        PaisTime = setPaisesTime.getText().toString();
-                        Time time = new Time(NomeTime, Regiao, Estado, PaisTime, tipotime, timeLigas);
-                        Retrofit retrofit = APIClient.getClient();
-                        TimeResource timeResource = retrofit.create(TimeResource.class);
-                        Call<Time> call = timeResource.put(ID, time);
+                    String tipotime = String.valueOf(setTipoTimeTime.getSelectedItem());
 
-                        call.enqueue(new Callback<Time>() {
-                            @Override
-                            public void onResponse(Call<Time> call, Response<Time> response) {
+                    Liga ligaSelecionada = (Liga) setLigasTime.getSelectedItem();
+                    int idSelecionado = ligaSelecionada.getLigaId();
+
+                    Time time = new Time(NomeTime, Regiao, Estado, PaisTime, tipotime, idSelecionado);
+                    Retrofit retrofit = APIClient.getClient();
+                    TimeResource timeResource = retrofit.create(TimeResource.class);
+                    Call<Time> call = timeResource.put(ID, time);
+
+                    call.enqueue(new Callback<Time>() {
+                        @Override
+                        public void onResponse(Call<Time> call, Response<Time> response) {
 
 //                            Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
 
-                            }
+                        }
 
-                            @Override
-                            public void onFailure(Call<Time> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<Time> call, Throwable t) {
 
-                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
-                            }
-                        });
+                        }
+                    });
 
-                        Toast.makeText(getApplicationContext(), "Time atualizada com sucesso !", Toast.LENGTH_LONG).show();
-
-
-                        finish();
+                    Toast.makeText(getApplicationContext(), "Time atualizada com sucesso !", Toast.LENGTH_LONG).show();
 
 
-                    } catch (Exception e) {
-
-                        Toast.makeText(getApplicationContext(), "Insira o ID da Liga referente!", Toast.LENGTH_LONG).show();
-
-
-                    }
+                    finish();
 
 
                 }
@@ -282,11 +272,7 @@ public class CadastroTActivity extends AppCompatActivity {
 
                 Spinner spinnerLigas = (Spinner) findViewById(R.id.setLigasTime);
                 List<Liga> ligas = response.body();
-//                List<Liga> listaLigas = new ArrayList<Liga>();
-//                for (Liga liga : ligas) {
-////                    listaLigas.add(String.valueOf(liga.getLigaId()));
-//                    listaLigas.add(liga);
-//                }
+
                 ArrayAdapter<Liga> adapterSpinner = new ArrayAdapter<Liga>(CadastroTActivity.this, android.R.layout.simple_list_item_1, ligas);
                 spinnerLigas.setAdapter(adapterSpinner);
 
