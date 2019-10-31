@@ -8,26 +8,26 @@
     tools:context=".Activitys.TipoprodutoActivity">
 
     <TextView
-        android:textColor="@color/Black"
         android:id="@+id/txtTipoproduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"
         android:text="Cadastrar Tipo Produto"
+        android:textColor="@color/Black"
         android:textSize="11pt" />
 
     <LinearLayout
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="horizontal">
 
         <TextView
-            android:textColor="@color/Black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Código: "
+            android:textColor="@color/Black"
             android:textSize="20dp" />
 
 
@@ -40,20 +40,27 @@
     </LinearLayout>
 
 
-    <EditText
-        android:layout_marginTop="15dp"
-        android:id="@+id/setNomeTipoproduto"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome"
-        android:inputType="textPersonName"
-        android:textIsSelectable="false" />
+        android:layout_marginTop="15dp">
+
+        <EditText
+            android:id="@+id/setNomeTipoproduto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome"
+            android:inputType="textPersonName"
+            android:textIsSelectable="false" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
-        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal">
 
 

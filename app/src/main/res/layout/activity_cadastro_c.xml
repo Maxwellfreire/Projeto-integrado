@@ -24,10 +24,10 @@
         android:orientation="horizontal">
 
         <TextView
-            android:textColor="@color/Black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Código: "
+            android:textColor="@color/Black"
             android:textSize="20dp" />
 
 
@@ -40,27 +40,42 @@
     </LinearLayout>
 
 
-    <EditText
-        android:layout_marginTop="15dp"
-        android:id="@+id/setNomeCargo"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome"
-        android:inputType="textPersonName" />
+        android:layout_marginTop="15dp">
 
-    <EditText
-        android:layout_marginTop="15dp"
-        android:id="@+id/setSalarioCargo"
+        <EditText
+            android:id="@+id/setNomeCargo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome"
+            android:inputType="textPersonName" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Salario"
-        android:inputType="numberDecimal" />
+        android:layout_marginTop="15dp">
+
+        <EditText
+            android:id="@+id/setSalarioCargo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Salario"
+            android:inputType="numberDecimal" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
-        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal">
 
 

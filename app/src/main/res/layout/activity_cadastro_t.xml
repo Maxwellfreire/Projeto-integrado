@@ -39,27 +39,26 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Nome: "
-        android:textColor="#000000"
-        android:textSize="18sp">
 
-    </TextView>
-
-
-    <EditText
-        android:id="@+id/setNomeTime"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:hint="Nome"
-        android:inputType="textPersonName" />
+        android:layout_marginTop="5dp">
+
+        <EditText
+            android:id="@+id/setNomeTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome"
+            android:inputType="textPersonName" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <TextView
+        android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -70,15 +69,27 @@
     </TextView>
 
 
-    <Spinner
-        android:id="@+id/setRegiaoTime"
+    <LinearLayout
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:inputType="numberDecimal" />
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/border"
+        tools:ignore="UselessParent">
+
+        <Spinner
+            android:id="@+id/setRegiaoTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#ff0000"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown" />
+
+    </LinearLayout>
 
     <TextView
+        android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -88,34 +99,45 @@
 
     </TextView>
 
-    <Spinner
-        android:id="@+id/setEstadoTime"
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/border"
+        tools:ignore="UselessParent">
+
+        <Spinner
+            android:id="@+id/setEstadoTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#ff0000"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown" />
+
+    </LinearLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:inputType="numberDecimal" />
+        android:layout_marginTop="5dp">
+
+        <EditText
+            android:id="@+id/setPaisesTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="País"
+            android:inputType="textPersonName" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="País: "
-        android:textColor="#000000"
-        android:textSize="18sp">
-
-    </TextView>
-
-
-    <EditText
-        android:id="@+id/setPaisesTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:hint="País"
-        android:inputType="textPersonName" />
-
-    <TextView
+        android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -125,16 +147,29 @@
 
     </TextView>
 
-    <Spinner
-        android:id="@+id/setTipoTimeTime"
+
+    <LinearLayout
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:inputType="numberDecimal" />
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/border"
+        tools:ignore="UselessParent">
+
+        <Spinner
+            android:id="@+id/setTipoTimeTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#ff0000"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown" />
+
+    </LinearLayout>
 
 
     <TextView
+        android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -144,13 +179,25 @@
 
     </TextView>
 
-    <Spinner
-        android:id="@+id/setLigasTime"
+
+    <LinearLayout
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:inputType="numberDecimal" />
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/border"
+        tools:ignore="UselessParent">
+
+        <Spinner
+            android:id="@+id/setLigasTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#ff0000"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
