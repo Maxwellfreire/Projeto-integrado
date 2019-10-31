@@ -6,160 +6,174 @@
     android:layout_height="match_parent"
     tools:context=".InicioActivity">
 
-   <com.google.android.material.appbar.AppBarLayout
-       android:id="@+id/appbar"
-       android:layout_width="match_parent"
-       android:layout_height="300dp"
-       android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-       app:layout_anchor="@+id/appbar"
-       app:layout_anchorGravity="left|top">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="left|top">
 
-       <com.google.android.material.appbar.CollapsingToolbarLayout
-           android:id="@+id/colappsingtoolbar"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:background="@drawable/capa"
-           app:contentScrim="?attr/colorPrimary"
-           app:expandedTitleMarginEnd="64dp"
-           app:expandedTitleMarginStart="48dp"
-           app:layout_scrollFlags="exitUntilCollapsed|scroll"
-           app:title="Fan Football">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/colappsingtoolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/capa"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="exitUntilCollapsed|scroll"
+            app:title="Fan Football">
 
-           <androidx.appcompat.widget.Toolbar
-               android:id="@+id/toolBarid"
-               android:layout_width="match_parent"
-               android:layout_height="?attr/actionBarSize"
-               app:layout_collapseMode="pin"
-               app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-
-           </androidx.appcompat.widget.Toolbar>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBarid"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
 
-       </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </androidx.appcompat.widget.Toolbar>
 
 
-   </com.google.android.material.appbar.AppBarLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="com.demotxt.droidsrce.homedashboard.Home"
-            android:orientation="vertical"
-            android:padding="10dp"
             android:background="#fcfcfc"
             android:gravity="center"
-            android:id="@+id/ll">
+            android:orientation="vertical"
+            android:padding="10dp"
+            tools:context="com.demotxt.droidsrce.homedashboard.Home">
+
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal">
+
                 <androidx.cardview.widget.CardView
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:onClick="BtnMarca"
                     android:layout_width="160dp"
                     android:layout_height="190dp"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="BtnMarca">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:background="@drawable/cerclebackgroundpurple"
-                            android:src="@drawable/ic_marca"
-                            android:padding="10dp"/>
+                            android:padding="10dp"
+                            android:src="@drawable/ic_marca" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textStyle="bold"
                             android:layout_marginTop="10dp"
-                            android:text="Marca"/>
+                            android:text="Marca"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
-                    android:onClick="btnCargo"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
                     android:layout_width="160dp"
                     android:layout_height="190dp"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="btnCargo">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:background="@drawable/cerclebackgroundpink"
-                            android:src="@drawable/ic_cargo"
-                            android:padding="10dp"/>
+                            android:padding="10dp"
+                            android:src="@drawable/ic_cargo" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textStyle="bold"
                             android:layout_marginTop="10dp"
-                            android:text="Cargo"/>
+                            android:text="Cargo"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
+
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal">
+
                 <androidx.cardview.widget.CardView
-                    android:onClick="btnLiga"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
                     android:layout_width="160dp"
                     android:layout_height="190dp"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="btnLiga">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:background="@drawable/cerclebackgroundgree"
-                            android:src="@drawable/bola"
-                            android:padding="10dp"/>
+                            android:padding="10dp"
+                            android:src="@drawable/bola" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textStyle="bold"
                             android:layout_marginTop="10dp"
-                            android:text="Liga"/>
+                            android:text="Liga"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
-                    android:onClick="btnTipoproduto"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
                     android:layout_width="160dp"
                     android:layout_height="190dp"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="btnTipoproduto">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -185,46 +199,52 @@
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
+
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal">
+
                 <androidx.cardview.widget.CardView
-                    android:onClick="btnTime"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
                     android:layout_width="160dp"
                     android:layout_height="190dp"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="btnTime">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:background="@drawable/cerclebackgroundgree"
-                            android:src="@drawable/time"
-                            android:padding="10dp"/>
+                            android:padding="10dp"
+                            android:src="@drawable/time" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textStyle="bold"
                             android:layout_marginTop="10dp"
-                            android:text="Time"/>
+                            android:text="Time"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
-                    android:onClick="btnCDesconto"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
                     android:layout_width="160dp"
                     android:layout_height="190dp"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="btnCDesconto">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -250,34 +270,104 @@
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="btnProduto">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/cerclebackgroundgree"
+                            android:padding="10dp"
+                            android:src="@drawable/icon" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Produto"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/cerclebackgroundyello"
+                            android:padding="10dp"
+                            android:src="@drawable/tick" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Em produção..."
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
             <TextView
-                android:textColor="#000000"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""/>
+                android:text=""
+                android:textColor="#000000" />
+
             <TextView
-                android:textColor="#000000"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""/>
+                android:text=""
+                android:textColor="#000000" />
+
             <TextView
-                android:textColor="#000000"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""/>
+                android:text=""
+                android:textColor="#000000" />
+
             <TextView
-                android:textColor="#000000"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""/>
+                android:text=""
+                android:textColor="#000000" />
         </LinearLayout>
 
 
-
-
-
     </androidx.core.widget.NestedScrollView>
-
 
 
 </com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout>

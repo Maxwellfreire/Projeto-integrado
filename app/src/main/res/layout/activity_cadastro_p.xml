@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activitys.CadastroTActivity">
+    tools:context=".Activitys.CadastroPActivity">
 
     <TextView
-        android:id="@+id/txtTime"
+        android:id="@+id/txtProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"
-        android:text="Cadastrar Time"
+        android:text="Cadastrar Produto"
         android:textColor="@color/Black"
         android:textSize="11pt" />
 
@@ -32,7 +32,7 @@
 
 
         <TextView
-            android:id="@+id/setIDTime"
+            android:id="@+id/setIDProduto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp" />
