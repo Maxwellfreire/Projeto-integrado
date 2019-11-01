@@ -33,9 +33,6 @@ public class Marca implements Serializable {
 
     @Override
     public String toString() {
-        return "Marca{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return name;
     }
 }

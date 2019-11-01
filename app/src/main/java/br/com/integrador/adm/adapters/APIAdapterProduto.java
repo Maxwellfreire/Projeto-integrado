@@ -2,14 +2,19 @@ package br.com.integrador.adm.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
+import br.com.integrador.adm.Activitys.CadastroPActivity;
 import br.com.integrador.adm.Activitys.CadastroTActivity;
 import br.com.integrador.adm.R;
 import br.com.integrador.adm.model.Produto;
@@ -67,10 +72,12 @@ public class APIAdapterProduto extends BaseAdapter {
         // pega o objeto corrente da lista
         Produto produto = parsetItem(i);
 
-        TextView campoID, campoNOME,campoDESC,campoPRECO,campoTGProduto,
-                campoTMProduto,campoTAMANHO,campoTProduto,campoTPProduto,campoMProduto;
+        TextView campoID, campoNOME, campoDESC, campoPRECO, campoTGProduto,
+                campoTMProduto, campoTAMANHO, campoTProduto, campoTPProduto, campoMProduto;
 
-        view = LayoutInflater.from(context).inflate(R.layout.item_produto,null);
+        ImageView campoImagem;
+
+        view = LayoutInflater.from(context).inflate(R.layout.item_produto, null);
 
         campoID = view.findViewById(R.id.getIDProduto);
         campoNOME = view.findViewById(R.id.getNomeProduto);
@@ -82,7 +89,16 @@ public class APIAdapterProduto extends BaseAdapter {
         campoTProduto = view.findViewById(R.id.getTProduto);
         campoTPProduto = view.findViewById(R.id.getTPProduto);
         campoMProduto = view.findViewById(R.id.getMarcaProduto);
+        campoImagem = view.findViewById(R.id.getImagemProduto);
 
+        String stringImagem = produto.getImagem();
+
+
+        byte[] decodeSring = Base64.decode(stringImagem, Base64.DEFAULT);
+        Bitmap decoded = BitmapFactory.decodeByteArray(decodeSring, 0, decodeSring.length);
+
+
+        campoImagem.setImageBitmap(decoded);
         campoID.setText(Integer.toString(produto.getIdProduto()));
         campoNOME.setText(produto.getNameProduto());
         campoDESC.setText(produto.getDesc());
@@ -94,19 +110,18 @@ public class APIAdapterProduto extends BaseAdapter {
         campoTPProduto.setText(Integer.toString(produto.getIdTipoProduto()));
         campoMProduto.setText(Integer.toString(produto.getIdMarca()));
 
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, CadastroTActivity.class);
+                Intent intent = new Intent(context, CadastroPActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("objetoDataProduto",Item);
+                intent.putExtra("objetoDataProduto", Item);
                 context.startActivity(intent);
 
             }
         });
-
-
 
 
         return view;

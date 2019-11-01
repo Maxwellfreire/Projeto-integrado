@@ -32,9 +32,6 @@ public class Tipoproduto implements Serializable {
 
     @Override
     public String toString() {
-        return "Tipoproduto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return  name ;
     }
 }

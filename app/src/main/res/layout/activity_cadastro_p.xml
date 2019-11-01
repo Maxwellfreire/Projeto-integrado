@@ -1,247 +1,356 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
     tools:context=".Activitys.CadastroPActivity">
 
-    <TextView
-        android:id="@+id/txtProduto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
-        android:text="Cadastrar Produto"
-        android:textColor="@color/Black"
-        android:textSize="11pt" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/txtProduto"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Código: "
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:text="Cadastrar Produto"
             android:textColor="@color/Black"
-            android:textSize="20dp" />
+            android:textSize="11pt" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Código: "
+                android:textColor="@color/Black"
+                android:textSize="20dp" />
+
+
+            <TextView
+                android:id="@+id/setIDProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:src="@drawable/ic_image"
+                android:id="@+id/ivImage"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="25dp"
+                android:clickable="true"></ImageView>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Escolher imagem">
+
+            </Button>
+
+
+        </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="5dp">
+
+            <EditText
+                android:id="@+id/setNomeProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome"
+                android:inputType="textPersonName" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="5dp">
+
+            <EditText
+                android:id="@+id/setDescProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Descrição"
+                android:inputType="textPersonName" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="5dp">
+
+            <EditText
+                android:id="@+id/setPrecoProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Preço"
+                android:inputType="numberDecimal" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Tipo de Gola: "
+            android:textColor="#000000"
+            android:textSize="18sp">
+
+        </TextView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/border"
+            tools:ignore="UselessParent">
+
+            <Spinner
+                android:id="@+id/setTipogolaSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#ff0000"
+                android:overlapAnchor="false"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Tipo de Manga: "
+            android:textColor="#000000"
+            android:textSize="18sp">
+
+        </TextView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/border"
+            tools:ignore="UselessParent">
+
+            <Spinner
+                android:id="@+id/setTipomangaSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#ff0000"
+                android:overlapAnchor="false"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Tamanho: "
+            android:textColor="#000000"
+            android:textSize="18sp">
+
+        </TextView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/border"
+            tools:ignore="UselessParent">
+
+            <Spinner
+                android:id="@+id/setTamanhoSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#ff0000"
+                android:overlapAnchor="false"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
 
 
         <TextView
-            android:id="@+id/setIDProduto"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp" />
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Times: "
+            android:textColor="#000000"
+            android:textSize="18sp">
+
+        </TextView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/border"
+            tools:ignore="UselessParent">
+
+            <Spinner
+                android:id="@+id/setTimeSpinnerProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#ff0000"
+                android:overlapAnchor="false"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Tipo produto: "
+            android:textColor="#000000"
+            android:textSize="18sp">
+
+        </TextView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/border"
+            tools:ignore="UselessParent">
+
+            <Spinner
+                android:id="@+id/setTPSpinnerProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#ff0000"
+                android:overlapAnchor="false"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Marca: "
+            android:textColor="#000000"
+            android:textSize="18sp">
+
+        </TextView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/border"
+            tools:ignore="UselessParent">
+
+            <Spinner
+                android:id="@+id/setMarcaSpinnerProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#ff0000"
+                android:overlapAnchor="false"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/btnSalvarProduto"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/cerclebackgroundbuttonsalvar"
+                android:text="Salvar"
+                android:textAllCaps="false"
+                android:textColor="@color/backgroundcolor"
+                android:textSize="15sp" />
+
+
+            <Button
+                android:id="@+id/btnExcluirProduto"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/cerclebackgroundbuttonexcluir"
+                android:text="Excluir"
+                android:textAllCaps="false"
+                android:textColor="@color/backgroundcolor"
+                android:textSize="15sp" />
+        </LinearLayout>
+
 
     </LinearLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
-
-        <EditText
-            android:id="@+id/setNomeTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nome"
-            android:inputType="textPersonName" />
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <TextView
-        android:layout_margin="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Região: "
-        android:textColor="#000000"
-        android:textSize="18sp">
-
-    </TextView>
-
-
-    <LinearLayout
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="7dp"
-        android:background="@drawable/border"
-        tools:ignore="UselessParent">
-
-        <Spinner
-            android:id="@+id/setRegiaoTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#ff0000"
-            android:overlapAnchor="false"
-            android:spinnerMode="dropdown" />
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_margin="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Estado: "
-        android:textColor="#000000"
-        android:textSize="18sp">
-
-    </TextView>
-
-
-    <LinearLayout
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="7dp"
-        android:background="@drawable/border"
-        tools:ignore="UselessParent">
-
-        <Spinner
-            android:id="@+id/setEstadoTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#ff0000"
-            android:overlapAnchor="false"
-            android:spinnerMode="dropdown" />
-
-    </LinearLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
-
-        <EditText
-            android:id="@+id/setPaisesTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="País"
-            android:inputType="textPersonName" />
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:layout_margin="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Tipo do Time: "
-        android:textColor="#000000"
-        android:textSize="18sp">
-
-    </TextView>
-
-
-    <LinearLayout
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="7dp"
-        android:background="@drawable/border"
-        tools:ignore="UselessParent">
-
-        <Spinner
-            android:id="@+id/setTipoTimeTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#ff0000"
-            android:overlapAnchor="false"
-            android:spinnerMode="dropdown" />
-
-    </LinearLayout>
-
-
-    <TextView
-        android:layout_margin="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Ligas: "
-        android:textColor="#000000"
-        android:textSize="18sp">
-
-    </TextView>
-
-
-    <LinearLayout
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="7dp"
-        android:background="@drawable/border"
-        tools:ignore="UselessParent">
-
-        <Spinner
-            android:id="@+id/setLigasTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#ff0000"
-            android:overlapAnchor="false"
-            android:spinnerMode="dropdown" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal">
-
-
-        <Button
-            android:id="@+id/btnSalvarTime"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/cerclebackgroundbuttonsalvar"
-            android:text="Salvar"
-            android:textAllCaps="false"
-            android:textColor="@color/backgroundcolor"
-            android:textSize="15sp" />
-
-
-        <Button
-            android:id="@+id/btnExcluirTime"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/cerclebackgroundbuttonexcluir"
-            android:text="Excluir"
-            android:textAllCaps="false"
-            android:textColor="@color/backgroundcolor"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-
-</LinearLayout>
+</ScrollView>

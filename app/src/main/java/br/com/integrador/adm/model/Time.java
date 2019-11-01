@@ -83,14 +83,6 @@ public class Time implements Serializable {
 
     @Override
     public String toString() {
-        return "Time{" +
-                "idTime=" + idTime +
-                ", nameTime='" + nameTime + '\'' +
-                ", regiao='" + regiao + '\'' +
-                ", estado='" + estado + '\'' +
-                ", pais='" + pais + '\'' +
-                ", tipoTime='" + tipoTime + '\'' +
-                ", ligaId=" + ligaId +
-                '}';
+        return  nameTime ;
     }
 }
