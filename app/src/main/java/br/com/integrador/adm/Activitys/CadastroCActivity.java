@@ -98,7 +98,7 @@ public class CadastroCActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Cargo> call, Response<Cargo> response) {
 
-                                Toast.makeText(getApplicationContext(), "Cargo cadastrada com sucesso !", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Cargo cadastrado com sucesso !", Toast.LENGTH_LONG).show();
 
 
                             }
@@ -143,7 +143,7 @@ public class CadastroCActivity extends AppCompatActivity {
                         }
                     });
 
-                    Toast.makeText(getApplicationContext(), "Cargo atualizada com sucesso !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Cargo atualizado com sucesso !", Toast.LENGTH_LONG).show();
 
 
                     finish();
@@ -182,7 +182,7 @@ public class CadastroCActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
 
-                                        Toast.makeText(getApplicationContext(), "Cargo " + ID + " excluida com sucesso !", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Cargo " + ID + " excluido com sucesso !", Toast.LENGTH_LONG).show();
 
                                     }
 

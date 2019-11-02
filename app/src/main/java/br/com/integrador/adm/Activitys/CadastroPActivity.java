@@ -257,7 +257,7 @@ public class CadastroPActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Produto> call, Response<Produto> response) {
 
-                                Toast.makeText(getApplicationContext(), "Produto cadastrada com sucesso !", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Produto cadastrado com sucesso !", Toast.LENGTH_LONG).show();
 
 
                             }
@@ -318,7 +318,7 @@ public class CadastroPActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Produto> call, Response<Produto> response) {
 
-                                Toast.makeText(getApplicationContext(), "Produto cadastrada com sucesso !", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Produto cadastrado com sucesso !", Toast.LENGTH_LONG).show();
 
 
                             }
@@ -409,7 +409,7 @@ public class CadastroPActivity extends AppCompatActivity {
                         }
                     });
 
-                    Toast.makeText(getApplicationContext(), "Produto atualizada com sucesso !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Produto atualizado com sucesso !", Toast.LENGTH_LONG).show();
 
 
                     finish();

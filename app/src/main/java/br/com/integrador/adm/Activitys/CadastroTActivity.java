@@ -160,7 +160,7 @@ public class CadastroTActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<Time> call, Response<Time> response) {
 
-                            Toast.makeText(getApplicationContext(), "Time cadastrada com sucesso !", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Time cadastrado com sucesso !", Toast.LENGTH_LONG).show();
 
 
                         }
@@ -215,7 +215,7 @@ public class CadastroTActivity extends AppCompatActivity {
                         }
                     });
 
-                    Toast.makeText(getApplicationContext(), "Time atualizada com sucesso !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Time atualizado com sucesso !", Toast.LENGTH_LONG).show();
 
 
                     finish();

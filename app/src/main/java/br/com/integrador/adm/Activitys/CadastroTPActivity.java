@@ -135,7 +135,7 @@ public class CadastroTPActivity extends AppCompatActivity {
                         }
                     });
 
-                    Toast.makeText(getApplicationContext(), "Tipo do produto atualizada com sucesso !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Tipo do produto atualizado com sucesso !", Toast.LENGTH_LONG).show();
 
 
                     finish();
