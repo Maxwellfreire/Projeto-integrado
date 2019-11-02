@@ -1,8 +1,10 @@
 package br.com.integrador.adm.Activitys;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -153,27 +155,56 @@ public class CadastroMActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                // Creating alert Dialog with two Buttons
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(CadastroMActivity.this);
+                // Setting Dialog Title
+                alertDialog.setTitle("Confirmar exclusão...");
+                // Setting Dialog Message
+                alertDialog.setMessage("Tem certeza de que deseja excluir isso?");
+                // Setting Icon to Dialog
+                alertDialog.setIcon(R.drawable.tick);
+                // Setting Positive "Yes" Button
+                alertDialog.setNegativeButton("SIM",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Write your code here to execute after dialog
+//                                Toast.makeText(getApplicationContext(), "Você clicou em SIM", Toast.LENGTH_SHORT).show();
 
-                final Integer ID = ItemMarca.getId();
-                Retrofit retrofit = APIClient.getClient();
-                MarcaResource marcaResource = retrofit.create(MarcaResource.class);
-                Call<Void> call = marcaResource.delete(ID);
+                                final Integer ID = ItemMarca.getId();
+                                Retrofit retrofit = APIClient.getClient();
+                                MarcaResource marcaResource = retrofit.create(MarcaResource.class);
+                                Call<Void> call = marcaResource.delete(ID);
 
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                                call.enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
 
-                        Toast.makeText(getApplicationContext(), "Marca " + ID + " excluida com sucesso !", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Marca " + ID + " excluida com sucesso !", Toast.LENGTH_LONG).show();
 
-                    }
+                                    }
 
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
 
-                    }
-                });
+                                    }
+                                });
 
-                finish();
+                                finish();
+
+
+                            }
+                        });
+                // Setting Negative "NO" Button
+                alertDialog.setPositiveButton("NÂO",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Write your code here to execute after dialog
+//                                Toast.makeText(getApplicationContext(), "Você clicou em NÃO", Toast.LENGTH_SHORT).show();
+                                dialog.cancel();
+                            }
+                        });
+                // Showing Alert Message
+                alertDialog.show();
 
 
             }

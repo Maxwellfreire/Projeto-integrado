@@ -1,8 +1,10 @@
 package br.com.integrador.adm.Activitys;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -230,26 +232,56 @@ public class CadastroTActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                final Integer ID = ItemTime.getIdTime();
-                Retrofit retrofit = APIClient.getClient();
-                TimeResource timeResource = retrofit.create(TimeResource.class);
-                Call<Void> call = timeResource.delete(ID);
+                // Creating alert Dialog with two Buttons
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(CadastroTActivity.this);
+                // Setting Dialog Title
+                alertDialog.setTitle("Confirmar exclusão...");
+                // Setting Dialog Message
+                alertDialog.setMessage("Tem certeza de que deseja excluir isso?");
+                // Setting Icon to Dialog
+                alertDialog.setIcon(R.drawable.tick);
+                // Setting Positive "Yes" Button
+                alertDialog.setNegativeButton("SIM",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Write your code here to execute after dialog
+//                                Toast.makeText(getApplicationContext(), "Você clicou em SIM", Toast.LENGTH_SHORT).show();
 
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                                final Integer ID = ItemTime.getIdTime();
+                                Retrofit retrofit = APIClient.getClient();
+                                TimeResource timeResource = retrofit.create(TimeResource.class);
+                                Call<Void> call = timeResource.delete(ID);
 
-                        Toast.makeText(getApplicationContext(), "Time " + ID + " excluida com sucesso !", Toast.LENGTH_LONG).show();
+                                call.enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
 
-                    }
+                                        Toast.makeText(getApplicationContext(), "Time " + ID + " excluido com sucesso !", Toast.LENGTH_LONG).show();
 
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                                    }
 
-                    }
-                });
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
 
-                finish();
+                                    }
+                                });
+
+                                finish();
+
+
+                            }
+                        });
+                // Setting Negative "NO" Button
+                alertDialog.setPositiveButton("NÂO",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Write your code here to execute after dialog
+//                                Toast.makeText(getApplicationContext(), "Você clicou em NÃO", Toast.LENGTH_SHORT).show();
+                                dialog.cancel();
+                            }
+                        });
+                // Showing Alert Message
+                alertDialog.show();
 
 
             }

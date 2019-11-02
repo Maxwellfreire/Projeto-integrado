@@ -1,10 +1,12 @@
 package br.com.integrador.adm.Activitys;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -197,8 +199,147 @@ public class CadastroPActivity extends AppCompatActivity {
 
                 if (btnSalvarProduto.getText().toString().equals("Salvar")) {
 
+                    try {
+
+                        ImageView minhaImageView = (ImageView) findViewById(R.id.ivImageC);
+                        Bitmap imagembitmap = ((BitmapDrawable) minhaImageView.getDrawable()).getBitmap();
+
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        imagembitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+                        final byte[] dadosdaimagem = baos.toByteArray();
+
+
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(dadosdaimagem, 0, dadosdaimagem.length);
+                        Bitmap b = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
+
+
+                        String code = codeImg(b);
+
+                        setNomeProduto = (EditText) findViewById(R.id.setNomeProduto);
+                        setDescProduto = (EditText) findViewById(R.id.setDescProduto);
+                        setPrecoProduto = (EditText) findViewById(R.id.setPrecoProduto);
+
+
+                        String NomeProduto, DescProduto, PrecoProduto;
+
+
+                        NomeProduto = setNomeProduto.getText().toString();
+
+                        DescProduto = setDescProduto.getText().toString();
+
+                        PrecoProduto = setPrecoProduto.getText().toString();
+
+                        int numeroPreco = Integer.parseInt(PrecoProduto);
+
+                        String TipoGola = String.valueOf(setTipogolaSpinner.getSelectedItem());
+
+                        String TipoManga = String.valueOf(setTipomangaSpinner.getSelectedItem());
+
+                        String Tamanho = String.valueOf(setTamanhoSpinner.getSelectedItem());
+
+
+                        Time timeSelecionado = (Time) setTimeSpinnerProduto.getSelectedItem();
+                        int idTSelecionado = timeSelecionado.getIdTime();
+
+                        Tipoproduto tpSelecionado = (Tipoproduto) setTPSpinnerProduto.getSelectedItem();
+                        int idTPSelecionado = tpSelecionado.getId();
+
+                        Marca marcaSelecionado = (Marca) setMarcaSpinnerProduto.getSelectedItem();
+                        int idMSelecionado = marcaSelecionado.getId();
+
+                        Produto produto = new Produto(code, NomeProduto, DescProduto, numeroPreco,
+                                TipoGola, TipoManga, Tamanho, idTSelecionado, idTPSelecionado, idMSelecionado);
+                        Retrofit retrofit = APIClient.getClient();
+                        ProdutoResource produtoResource = retrofit.create(ProdutoResource.class);
+                        Call<Produto> call = produtoResource.post(produto);
+
+                        call.enqueue(new Callback<Produto>() {
+                            @Override
+                            public void onResponse(Call<Produto> call, Response<Produto> response) {
+
+                                Toast.makeText(getApplicationContext(), "Produto cadastrada com sucesso !", Toast.LENGTH_LONG).show();
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Produto> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
+                        finish();
+
+                    } catch (Exception e) {
+
+
+                        String code = "absldjbash";
+
+                        setNomeProduto = (EditText) findViewById(R.id.setNomeProduto);
+                        setDescProduto = (EditText) findViewById(R.id.setDescProduto);
+                        setPrecoProduto = (EditText) findViewById(R.id.setPrecoProduto);
+
+
+                        String NomeProduto, DescProduto, PrecoProduto;
+
+
+                        NomeProduto = setNomeProduto.getText().toString();
+
+                        DescProduto = setDescProduto.getText().toString();
+
+                        PrecoProduto = setPrecoProduto.getText().toString();
+
+                        int numeroPreco = Integer.parseInt(PrecoProduto);
+
+                        String TipoGola = String.valueOf(setTipogolaSpinner.getSelectedItem());
+
+                        String TipoManga = String.valueOf(setTipomangaSpinner.getSelectedItem());
+
+                        String Tamanho = String.valueOf(setTamanhoSpinner.getSelectedItem());
+
+
+                        Time timeSelecionado = (Time) setTimeSpinnerProduto.getSelectedItem();
+                        int idTSelecionado = timeSelecionado.getIdTime();
+
+                        Tipoproduto tpSelecionado = (Tipoproduto) setTPSpinnerProduto.getSelectedItem();
+                        int idTPSelecionado = tpSelecionado.getId();
+
+                        Marca marcaSelecionado = (Marca) setMarcaSpinnerProduto.getSelectedItem();
+                        int idMSelecionado = marcaSelecionado.getId();
+
+                        Produto produto = new Produto(code, NomeProduto, DescProduto, numeroPreco,
+                                TipoGola, TipoManga, Tamanho, idTSelecionado, idTPSelecionado, idMSelecionado);
+                        Retrofit retrofit = APIClient.getClient();
+                        ProdutoResource produtoResource = retrofit.create(ProdutoResource.class);
+                        Call<Produto> call = produtoResource.post(produto);
+
+                        call.enqueue(new Callback<Produto>() {
+                            @Override
+                            public void onResponse(Call<Produto> call, Response<Produto> response) {
+
+                                Toast.makeText(getApplicationContext(), "Produto cadastrada com sucesso !", Toast.LENGTH_LONG).show();
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Produto> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
+                        finish();
+
+
+                    }
+
+
+                } else {
+
                     ImageView minhaImageView = (ImageView) findViewById(R.id.ivImageC);
-                    Bitmap imagembitmap = ((BitmapDrawable)minhaImageView.getDrawable()).getBitmap();
+                    Bitmap imagembitmap = ((BitmapDrawable) minhaImageView.getDrawable()).getBitmap();
 
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     imagembitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
@@ -210,6 +351,9 @@ public class CadastroPActivity extends AppCompatActivity {
 
 
                     String code = codeImg(b);
+
+
+                    Integer ID = ItemProduto.getIdProduto();
 
                     setNomeProduto = (EditText) findViewById(R.id.setNomeProduto);
                     setDescProduto = (EditText) findViewById(R.id.setDescProduto);
@@ -247,74 +391,88 @@ public class CadastroPActivity extends AppCompatActivity {
                             TipoGola, TipoManga, Tamanho, idTSelecionado, idTPSelecionado, idMSelecionado);
                     Retrofit retrofit = APIClient.getClient();
                     ProdutoResource produtoResource = retrofit.create(ProdutoResource.class);
-                    Call<Produto> call = produtoResource.post(produto);
+                    Call<Produto> call = produtoResource.put(ID, produto);
 
                     call.enqueue(new Callback<Produto>() {
                         @Override
                         public void onResponse(Call<Produto> call, Response<Produto> response) {
 
-                            Toast.makeText(getApplicationContext(), "Produto cadastrada com sucesso !", Toast.LENGTH_LONG).show();
-
+//                            Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
 
                         }
 
                         @Override
                         public void onFailure(Call<Produto> call, Throwable t) {
+
                             Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
                     });
 
+                    Toast.makeText(getApplicationContext(), "Produto atualizada com sucesso !", Toast.LENGTH_LONG).show();
+
+
                     finish();
 
 
-                } else {
-
-
-//                    String NomeTime, PaisTime;
-//                    Integer ID = ItemTime.getIdTime();
-//
-//                    NomeTime = setNomeTime.getText().toString();
-//
-//                    String Regiao = String.valueOf(setRegiaoTime.getSelectedItem());
-//
-//                    String Estado = String.valueOf(setEstadoTime.getSelectedItem());
-//
-//                    PaisTime = setPaisesTime.getText().toString();
-//
-//                    String tipotime = String.valueOf(setTipoTimeTime.getSelectedItem());
-//
-//                    Liga ligaSelecionada = (Liga) setLigasTime.getSelectedItem();
-//                    int idSelecionado = ligaSelecionada.getLigaId();
-//
-//                    Time time = new Time(NomeTime, Regiao, Estado, PaisTime, tipotime, idSelecionado);
-//                    Retrofit retrofit = APIClient.getClient();
-//                    TimeResource timeResource = retrofit.create(TimeResource.class);
-//                    Call<Time> call = timeResource.put(ID, time);
-//
-//                    call.enqueue(new Callback<Time>() {
-//                        @Override
-//                        public void onResponse(Call<Time> call, Response<Time> response) {
-//
-////                            Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
-//
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<Time> call, Throwable t) {
-//
-//                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                        }
-//                    });
-//
-//                    Toast.makeText(getApplicationContext(), "Time atualizada com sucesso !", Toast.LENGTH_LONG).show();
-//
-//
-//                    finish();
-
-
                 }
+
+
+            }
+        });
+
+        btnExcluirProduto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Creating alert Dialog with two Buttons
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(CadastroPActivity.this);
+                // Setting Dialog Title
+                alertDialog.setTitle("Confirmar exclusão...");
+                // Setting Dialog Message
+                alertDialog.setMessage("Tem certeza de que deseja excluir isso?");
+                // Setting Icon to Dialog
+                alertDialog.setIcon(R.drawable.tick);
+                // Setting Positive "Yes" Button
+                alertDialog.setNegativeButton("SIM",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Write your code here to execute after dialog
+//                                Toast.makeText(getApplicationContext(), "Você clicou em SIM", Toast.LENGTH_SHORT).show();
+
+                                final Integer ID = ItemProduto.getIdProduto();
+                                Retrofit retrofit = APIClient.getClient();
+                                ProdutoResource produtoResource = retrofit.create(ProdutoResource.class);
+                                Call<Void> call = produtoResource.delete(ID);
+
+                                call.enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
+
+                                        Toast.makeText(getApplicationContext(), "Produto " + ID + " excluido com sucesso !", Toast.LENGTH_LONG).show();
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
+
+                                    }
+                                });
+
+                                finish();
+                            }
+                        });
+                // Setting Negative "NO" Button
+                alertDialog.setPositiveButton("NÂO",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Write your code here to execute after dialog
+//                                Toast.makeText(getApplicationContext(), "Você clicou em NÃO", Toast.LENGTH_SHORT).show();
+                                dialog.cancel();
+                            }
+                        });
+                // Showing Alert Message
+                alertDialog.show();
 
 
             }
