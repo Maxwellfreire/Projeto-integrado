@@ -49,20 +49,24 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:src="@drawable/ic_image"
-                android:id="@+id/ivImage"
+                android:id="@+id/ivImageC"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="25dp"
-                android:clickable="true"></ImageView>
+                android:clickable="true"
+                android:src="@drawable/ic_image"></ImageView>
+
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:text="Escolher imagem">
-
-            </Button>
+                android:background="@drawable/cerclebackgroundbuttonsalvar"
+                android:onClick="btnFoto"
+                android:text="Escolher Imagem"
+                android:textAllCaps="false"
+                android:textColor="@color/backgroundcolor"
+                android:textSize="15sp" />
 
 
         </LinearLayout>
