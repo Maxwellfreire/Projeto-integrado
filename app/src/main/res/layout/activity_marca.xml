@@ -56,26 +56,24 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ListView
-                android:id="@+id/minhaListaMarca"
+            <com.baoyz.widget.PullRefreshLayout
+                android:id="@+id/refreshMarca"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:longClickable="true" />
+                android:layout_height="match_parent">
+
+                <ListView
+                    android:id="@+id/minhaListaMarca"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:longClickable="true" />
+
+            </com.baoyz.widget.PullRefreshLayout>
+
+
         </LinearLayout>
 
 
     </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_carregar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="10dp"
-        android:clickable="true"
-        android:onClick="carregarMarca"
-        android:src="@drawable/ic_atualizar"
-        app:backgroundTint="@color/corPar" />
 
 
 </FrameLayout>

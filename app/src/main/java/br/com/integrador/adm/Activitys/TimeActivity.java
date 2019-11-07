@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
+
 import java.util.List;
 
 import br.com.integrador.adm.R;
@@ -29,6 +31,7 @@ import retrofit2.Retrofit;
 public class TimeActivity extends AppCompatActivity {
     public ListView minhaListaTime;
     private ProgressDialog pDialog;
+    PullRefreshLayout refreshTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,19 @@ public class TimeActivity extends AppCompatActivity {
 
 
         Atualizar();
+
+        refreshTime = (PullRefreshLayout) findViewById(R.id.refreshTime);
+
+        refreshTime.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                statusdeconectividade();
+                Atualizar();
+
+            }
+        });
+
+        refreshTime.setRefreshing(false);
     }
 
     protected void onResume() {
@@ -71,7 +87,9 @@ public class TimeActivity extends AppCompatActivity {
                 List<Time> times = response.body();
                 APIAdapterTime apiAdapterTime = new APIAdapterTime(getApplicationContext(), times);
                 minhaListaTime.setAdapter(apiAdapterTime);
-                //marcas.forEach(p-> Log.i  ("senai",p.toString()));
+
+                apiAdapterTime.notifyDataSetChanged();
+                refreshTime.setRefreshing(false);
             }
 
             @Override
@@ -135,10 +153,5 @@ public class TimeActivity extends AppCompatActivity {
         startActivity(new Intent(this, CadastroTActivity.class));
     }
 
-    public void carregarTime(View view) {
 
-        statusdeconectividade();
-        Atualizar();
-
-    }
 }

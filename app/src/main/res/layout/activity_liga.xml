@@ -1,39 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activitys.LigaActivity">
 
     <TextView
-        android:textColor="@color/Black"
-        android:layout_marginBottom="20dp"
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
         android:text="Liga"
-        android:textSize="11pt"
-        android:id="@+id/textView5"
-        android:layout_gravity="center_horizontal"/>
-
+        android:textColor="@color/Black"
+        android:textSize="11pt" />
 
 
     <LinearLayout
-        android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:orientation="vertical">
 
 
-
-
-
         <LinearLayout
-            android:layout_gravity="right"
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:orientation="horizontal">
 
 
             <Button
@@ -54,7 +49,6 @@
                 android:textSize="15sp" />
 
 
-
         </LinearLayout>
 
         <LinearLayout
@@ -62,28 +56,24 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ListView
-                android:longClickable="true"
-                android:id="@+id/minhaListaLiga"
+            <com.baoyz.widget.PullRefreshLayout
+                android:id="@+id/refreshLiga"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
+
+                <ListView
+                    android:id="@+id/minhaListaLiga"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:longClickable="true" />
+
+            </com.baoyz.widget.PullRefreshLayout>
+
+
         </LinearLayout>
 
 
     </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_carregar"
-        android:clickable="true"
-        android:onClick="carregarLiga"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="10dp"
-        android:src="@drawable/ic_atualizar"
-        app:backgroundTint="@color/corPar"/>
-
-
 
 
 </FrameLayout>

@@ -33,4 +33,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
     implementation 'com.github.chrisbanes:PhotoView:2.1.4'
+    implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
 }

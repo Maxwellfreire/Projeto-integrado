@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
+
 import java.util.List;
 
 import br.com.integrador.adm.R;
@@ -29,6 +31,7 @@ import retrofit2.Retrofit;
 public class MarcaActivity extends AppCompatActivity {
     public ListView minhaListaMarca;
     private ProgressDialog pDialog;
+    PullRefreshLayout refreshMarca;
 
 
     @Override
@@ -44,6 +47,19 @@ public class MarcaActivity extends AppCompatActivity {
 
 
         Atualizar();
+
+        refreshMarca = (PullRefreshLayout) findViewById(R.id.refreshMarca);
+
+        refreshMarca.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                statusdeconectividade();
+                Atualizar();
+
+            }
+        });
+
+        refreshMarca.setRefreshing(false);
 
 
     }
@@ -75,7 +91,9 @@ public class MarcaActivity extends AppCompatActivity {
                 List<Marca> marcas = response.body();
                 APIAdapterMarca apiAdapterMarca = new APIAdapterMarca(getApplicationContext(), marcas);
                 minhaListaMarca.setAdapter(apiAdapterMarca);
-                //marcas.forEach(p-> Log.i  ("senai",p.toString()));
+
+                apiAdapterMarca.notifyDataSetChanged();
+                refreshMarca.setRefreshing(false);
             }
 
             @Override
@@ -90,12 +108,7 @@ public class MarcaActivity extends AppCompatActivity {
 
     }
 
-    public void carregarMarca(View view) {
-        statusdeconectividade();
-        Atualizar();
-//        Snackbar.make(view, "Atualizando...", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show();
-    }
+
 
 
     private void statusdeconectividade() {

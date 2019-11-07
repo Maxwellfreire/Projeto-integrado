@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
+
 import java.util.List;
 
 import br.com.integrador.adm.R;
@@ -29,6 +31,7 @@ import retrofit2.Retrofit;
 public class LigaActivity extends AppCompatActivity {
     public ListView minhaListaLiga;
     private ProgressDialog pDialog;
+    PullRefreshLayout refreshLiga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,19 @@ public class LigaActivity extends AppCompatActivity {
 
 
         Atualizar();
+
+        refreshLiga = (PullRefreshLayout) findViewById(R.id.refreshLiga);
+
+        refreshLiga.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                statusdeconectividade();
+                Atualizar();
+
+            }
+        });
+
+        refreshLiga.setRefreshing(false);
     }
 
     protected void onResume() {
@@ -71,7 +87,9 @@ public class LigaActivity extends AppCompatActivity {
                 List<Liga> ligas = response.body();
                 APIAdapterLiga apiAdapterLiga = new APIAdapterLiga(getApplicationContext(), ligas);
                 minhaListaLiga.setAdapter(apiAdapterLiga);
-                //marcas.forEach(p-> Log.i  ("senai",p.toString()));
+
+                apiAdapterLiga.notifyDataSetChanged();
+                refreshLiga.setRefreshing(false);
             }
 
             @Override
@@ -86,12 +104,7 @@ public class LigaActivity extends AppCompatActivity {
 
     }
 
-    public void carregarLiga(View view) {
-        statusdeconectividade();
-        Atualizar();
-//        Snackbar.make(view, "Atualizando...", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show();
-    }
+
 
 
     private void statusdeconectividade() {

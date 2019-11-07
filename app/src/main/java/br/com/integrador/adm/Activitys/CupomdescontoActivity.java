@@ -14,15 +14,14 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
+
 import java.util.List;
 
 import br.com.integrador.adm.R;
-import br.com.integrador.adm.adapters.APIAdapterCargo;
 import br.com.integrador.adm.adapters.APIAdapterCupomdesconto;
 import br.com.integrador.adm.boostrap.APIClient;
-import br.com.integrador.adm.model.Cargo;
 import br.com.integrador.adm.model.Cupomdesconto;
-import br.com.integrador.adm.resource.CargoResource;
 import br.com.integrador.adm.resource.CupomdescontoResource;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +31,7 @@ import retrofit2.Retrofit;
 public class CupomdescontoActivity extends AppCompatActivity {
     public ListView minhaListaCDesconto;
     private ProgressDialog pDialog;
+    PullRefreshLayout refreshCDesconto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,19 @@ public class CupomdescontoActivity extends AppCompatActivity {
 
 
         Atualizar();
+
+        refreshCDesconto = (PullRefreshLayout) findViewById(R.id.refreshCDesconto);
+
+        refreshCDesconto.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                statusdeconectividade();
+                Atualizar();
+
+            }
+        });
+
+        refreshCDesconto.setRefreshing(false);
     }
 
     protected void onResume(){
@@ -74,7 +87,9 @@ public class CupomdescontoActivity extends AppCompatActivity {
                 List<Cupomdesconto> cupomdescontos = response.body();
                 APIAdapterCupomdesconto apiAdapterCupomdesconto = new APIAdapterCupomdesconto(getApplicationContext(), cupomdescontos);
                 minhaListaCDesconto.setAdapter(apiAdapterCupomdesconto);
-                //marcas.forEach(p-> Log.i  ("senai",p.toString()));
+
+                apiAdapterCupomdesconto.notifyDataSetChanged();
+                refreshCDesconto.setRefreshing(false);
             }
 
             @Override
@@ -137,8 +152,5 @@ public class CupomdescontoActivity extends AppCompatActivity {
         startActivity(new Intent(this, CadastroCDActivity.class));
     }
 
-    public void carregarCDesconto(View view) {
-        statusdeconectividade();
-        Atualizar();
-    }
+
 }

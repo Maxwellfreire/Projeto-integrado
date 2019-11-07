@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
+
 import java.util.List;
 
 import br.com.integrador.adm.R;
@@ -29,6 +31,7 @@ import retrofit2.Retrofit;
 public class TipoprodutoActivity extends AppCompatActivity {
     public ListView minhaListaTipoproduto;
     private ProgressDialog pDialog;
+    PullRefreshLayout refreshTipoproduto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +40,23 @@ public class TipoprodutoActivity extends AppCompatActivity {
 
         statusdeconectividade();
 
-
         pDialog = new ProgressDialog(TipoprodutoActivity.this);
 
 
         Atualizar();
+
+        refreshTipoproduto = (PullRefreshLayout) findViewById(R.id.refreshTipoproduto);
+
+        refreshTipoproduto.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                statusdeconectividade();
+                Atualizar();
+
+            }
+        });
+
+        refreshTipoproduto.setRefreshing(false);
     }
 
     protected void onResume() {
@@ -71,7 +86,9 @@ public class TipoprodutoActivity extends AppCompatActivity {
                 List<Tipoproduto> tipoprodutos = response.body();
                 APIAdapterTipoproduto apiAdapterTipoproduto = new APIAdapterTipoproduto(getApplicationContext(), tipoprodutos);
                 minhaListaTipoproduto.setAdapter(apiAdapterTipoproduto);
-                //marcas.forEach(p-> Log.i  ("senai",p.toString()));
+
+                apiAdapterTipoproduto.notifyDataSetChanged();
+                refreshTipoproduto.setRefreshing(false);
             }
 
             @Override
@@ -135,8 +152,5 @@ public class TipoprodutoActivity extends AppCompatActivity {
         startActivity(new Intent(this, CadastroTPActivity.class));
     }
 
-    public void carregarTipoproduto(View view) {
-        statusdeconectividade();
-        Atualizar();
-    }
+
 }

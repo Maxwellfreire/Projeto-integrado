@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
+
 import java.util.List;
 
 import br.com.integrador.adm.R;
@@ -29,6 +31,7 @@ import retrofit2.Retrofit;
 public class CargoActivity extends AppCompatActivity {
     public ListView minhaListaCargo;
     private ProgressDialog pDialog;
+    PullRefreshLayout refreshCargo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,22 @@ public class CargoActivity extends AppCompatActivity {
 
 
         Atualizar();
+
+        refreshCargo = (PullRefreshLayout) findViewById(R.id.refreshCargo);
+
+        refreshCargo.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                statusdeconectividade();
+                Atualizar();
+
+            }
+        });
+
+        refreshCargo.setRefreshing(false);
     }
-    protected void onResume(){
+
+    protected void onResume() {
         super.onResume();
         Atualizar();
     }
@@ -70,7 +87,9 @@ public class CargoActivity extends AppCompatActivity {
                 List<Cargo> cargos = response.body();
                 APIAdapterCargo apiAdapterCargo = new APIAdapterCargo(getApplicationContext(), cargos);
                 minhaListaCargo.setAdapter(apiAdapterCargo);
-                //marcas.forEach(p-> Log.i  ("senai",p.toString()));
+
+                apiAdapterCargo.notifyDataSetChanged();
+                refreshCargo.setRefreshing(false);
             }
 
             @Override
@@ -83,14 +102,6 @@ public class CargoActivity extends AppCompatActivity {
         });
 
 
-    }
-
-    public void carregarCargo(View view) {
-
-        statusdeconectividade();
-        Atualizar();
-//        Snackbar.make(view, "Atualizando...", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show();
     }
 
 

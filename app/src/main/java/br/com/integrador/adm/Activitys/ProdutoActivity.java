@@ -14,16 +14,15 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
+
 import java.util.List;
 
 import br.com.integrador.adm.R;
 import br.com.integrador.adm.adapters.APIAdapterProduto;
-import br.com.integrador.adm.adapters.APIAdapterTime;
 import br.com.integrador.adm.boostrap.APIClient;
 import br.com.integrador.adm.model.Produto;
-import br.com.integrador.adm.model.Time;
 import br.com.integrador.adm.resource.ProdutoResource;
-import br.com.integrador.adm.resource.TimeResource;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,18 +31,32 @@ import retrofit2.Retrofit;
 public class ProdutoActivity extends AppCompatActivity {
     public ListView minhaListaProduto;
     private ProgressDialog pDialog;
+    PullRefreshLayout refreshProduto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produto);
-        statusdeconectividade();
 
+        statusdeconectividade();
 
         pDialog = new ProgressDialog(ProdutoActivity.this);
 
-
         Atualizar();
+
+        refreshProduto = (PullRefreshLayout) findViewById(R.id.refreshProduto);
+
+        refreshProduto.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                statusdeconectividade();
+                Atualizar();
+
+            }
+        });
+
+        refreshProduto.setRefreshing(false);
+
     }
 
     protected void onResume() {
@@ -73,6 +86,9 @@ public class ProdutoActivity extends AppCompatActivity {
                 List<Produto> produtos = response.body();
                 APIAdapterProduto apiAdapterProduto = new APIAdapterProduto(getApplicationContext(), produtos);
                 minhaListaProduto.setAdapter(apiAdapterProduto);
+
+                apiAdapterProduto.notifyDataSetChanged();
+                refreshProduto.setRefreshing(false);
 
             }
 
@@ -136,9 +152,5 @@ public class ProdutoActivity extends AppCompatActivity {
         startActivity(new Intent(this, CadastroPActivity.class));
     }
 
-    public void carregarProduto(View view) {
 
-        statusdeconectividade();
-        Atualizar();
-    }
 }
