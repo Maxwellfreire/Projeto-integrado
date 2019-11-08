@@ -140,39 +140,56 @@ public class CadastroTActivity extends AppCompatActivity {
 
                     NomeTime = setNomeTime.getText().toString();
 
-                    String Regiao = String.valueOf(setRegiaoTime.getSelectedItem());
-
-                    String Estado = String.valueOf(setEstadoTime.getSelectedItem());
 
                     PaisTime = setPaisesTime.getText().toString();
 
-                    String tipotime = String.valueOf(setTipoTimeTime.getSelectedItem());
-
-                    Liga ligaSelecionada = (Liga) setLigasTime.getSelectedItem();
-                    int idSelecionado = ligaSelecionada.getLigaId();
-
-                    Time time = new Time(NomeTime, Regiao, Estado, PaisTime, tipotime, idSelecionado);
-                    Retrofit retrofit = APIClient.getClient();
-                    TimeResource timeResource = retrofit.create(TimeResource.class);
-                    Call<Time> call = timeResource.post(time);
-
-                    call.enqueue(new Callback<Time>() {
-                        @Override
-                        public void onResponse(Call<Time> call, Response<Time> response) {
-
-                            Toast.makeText(getApplicationContext(), "Time cadastrado com sucesso !", Toast.LENGTH_LONG).show();
+                    if (NomeTime.isEmpty()) {
 
 
-                        }
+                        setNomeTime.setError("O campo Nome está vazio!");
 
-                        @Override
-                        public void onFailure(Call<Time> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
+                    } else if (PaisTime.isEmpty()) {
 
-                    finish();
+
+                        setPaisesTime.setError("O campo País está vazio!");
+
+
+                    } else {
+
+                        String Regiao = String.valueOf(setRegiaoTime.getSelectedItem());
+
+                        String Estado = String.valueOf(setEstadoTime.getSelectedItem());
+
+                        String tipotime = String.valueOf(setTipoTimeTime.getSelectedItem());
+
+                        Liga ligaSelecionada = (Liga) setLigasTime.getSelectedItem();
+                        int idSelecionado = ligaSelecionada.getLigaId();
+
+                        Time time = new Time(NomeTime, Regiao, Estado, PaisTime, tipotime, idSelecionado);
+                        Retrofit retrofit = APIClient.getClient();
+                        TimeResource timeResource = retrofit.create(TimeResource.class);
+                        Call<Time> call = timeResource.post(time);
+
+                        call.enqueue(new Callback<Time>() {
+                            @Override
+                            public void onResponse(Call<Time> call, Response<Time> response) {
+
+                                Toast.makeText(getApplicationContext(), "Time cadastrado com sucesso !", Toast.LENGTH_LONG).show();
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Time> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
+                        finish();
+
+                    }
 
 
                 } else {
@@ -180,45 +197,64 @@ public class CadastroTActivity extends AppCompatActivity {
 
                     String NomeTime, PaisTime;
                     Integer ID = ItemTime.getIdTime();
+                    setNomeTime = (EditText) findViewById(R.id.setNomeTime);
+                    setPaisesTime = (EditText) findViewById(R.id.setPaisesTime);
 
                     NomeTime = setNomeTime.getText().toString();
 
-                    String Regiao = String.valueOf(setRegiaoTime.getSelectedItem());
-
-                    String Estado = String.valueOf(setEstadoTime.getSelectedItem());
 
                     PaisTime = setPaisesTime.getText().toString();
 
-                    String tipotime = String.valueOf(setTipoTimeTime.getSelectedItem());
+                    if (NomeTime.isEmpty()) {
 
-                    Liga ligaSelecionada = (Liga) setLigasTime.getSelectedItem();
-                    int idSelecionado = ligaSelecionada.getLigaId();
 
-                    Time time = new Time(NomeTime, Regiao, Estado, PaisTime, tipotime, idSelecionado);
-                    Retrofit retrofit = APIClient.getClient();
-                    TimeResource timeResource = retrofit.create(TimeResource.class);
-                    Call<Time> call = timeResource.put(ID, time);
+                        setNomeTime.setError("O campo Nome está vazio!");
 
-                    call.enqueue(new Callback<Time>() {
-                        @Override
-                        public void onResponse(Call<Time> call, Response<Time> response) {
+
+                    } else if (PaisTime.isEmpty()) {
+
+
+                        setPaisesTime.setError("O campo País está vazio!");
+
+
+                    } else {
+
+                        String Regiao = String.valueOf(setRegiaoTime.getSelectedItem());
+
+                        String Estado = String.valueOf(setEstadoTime.getSelectedItem());
+
+                        String tipotime = String.valueOf(setTipoTimeTime.getSelectedItem());
+
+                        Liga ligaSelecionada = (Liga) setLigasTime.getSelectedItem();
+                        int idSelecionado = ligaSelecionada.getLigaId();
+
+                        Time time = new Time(NomeTime, Regiao, Estado, PaisTime, tipotime, idSelecionado);
+                        Retrofit retrofit = APIClient.getClient();
+                        TimeResource timeResource = retrofit.create(TimeResource.class);
+                        Call<Time> call = timeResource.put(ID, time);
+
+                        call.enqueue(new Callback<Time>() {
+                            @Override
+                            public void onResponse(Call<Time> call, Response<Time> response) {
 
 //                            Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
 
-                        }
+                            }
 
-                        @Override
-                        public void onFailure(Call<Time> call, Throwable t) {
+                            @Override
+                            public void onFailure(Call<Time> call, Throwable t) {
 
-                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
+                            }
+                        });
 
-                    Toast.makeText(getApplicationContext(), "Time atualizado com sucesso !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Time atualizado com sucesso !", Toast.LENGTH_LONG).show();
 
 
-                    finish();
+                        finish();
+
+                    }
 
 
                 }
@@ -256,7 +292,16 @@ public class CadastroTActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
 
-                                        Toast.makeText(getApplicationContext(), "Time " + ID + " excluido com sucesso !", Toast.LENGTH_LONG).show();
+                                        if (response.code() == 204) {
+
+                                            Toast.makeText(getApplicationContext(), "Time " + ID + " excluido com sucesso !", Toast.LENGTH_LONG).show();
+
+                                        } else {
+
+                                            Toast.makeText(getApplicationContext(), "Time " + ID + " está relacionada a tabela Produtos", Toast.LENGTH_LONG).show();
+
+                                        }
+
 
                                     }
 

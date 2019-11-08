@@ -75,12 +75,16 @@ public class CadastroCActivity extends AppCompatActivity {
                     String Nome = setNomeCargo.getText().toString();
                     String Salario = setSalarioCargo.getText().toString();
 
-                    if (Nome.isEmpty() && Salario.isEmpty()) {
+                    if (Nome.isEmpty()) {
 
-                        //Toast.makeText(getApplicationContext(), "O campo 'Nome e Salario' esta vazio !", Toast.LENGTH_LONG).show();
 
-                        Snackbar.make(v, "'Nome e Salario' esta vazio !", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
+                        setNomeCargo.setError("O campo Nome está vazio!");
+
+
+                    } else if (Salario.isEmpty()) {
+
+
+                        setSalarioCargo.setError("O campo Salario está vazio!");
 
 
                     } else {
@@ -119,34 +123,51 @@ public class CadastroCActivity extends AppCompatActivity {
 
                     String NomeCargo, SalarioCargo;
                     Integer ID = ItemCargo.getId();
-
+                    setNomeCargo = (EditText) findViewById(R.id.setNomeCargo);
+                    setSalarioCargo = (EditText) findViewById(R.id.setSalarioCargo);
                     NomeCargo = setNomeCargo.getText().toString();
                     SalarioCargo = setSalarioCargo.getText().toString();
-                    Cargo cargo = new Cargo(NomeCargo, SalarioCargo);
-                    Retrofit retrofit = APIClient.getClient();
-                    CargoResource cargoResource = retrofit.create(CargoResource.class);
-                    Call<Cargo> call = cargoResource.put(ID, cargo);
 
-                    call.enqueue(new Callback<Cargo>() {
-                        @Override
-                        public void onResponse(Call<Cargo> call, Response<Cargo> response) {
+                    if (NomeCargo.isEmpty()) {
+
+                        setNomeCargo.setError("O campo Nome está vazio!");
+
+
+                    } else if (SalarioCargo.isEmpty()) {
+
+                        setSalarioCargo.setError("O campo Salario está vazio!");
+
+
+                    } else {
+
+                        Cargo cargo = new Cargo(NomeCargo, SalarioCargo);
+                        Retrofit retrofit = APIClient.getClient();
+                        CargoResource cargoResource = retrofit.create(CargoResource.class);
+                        Call<Cargo> call = cargoResource.put(ID, cargo);
+
+                        call.enqueue(new Callback<Cargo>() {
+                            @Override
+                            public void onResponse(Call<Cargo> call, Response<Cargo> response) {
 
 //                            Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
 
-                        }
+                            }
 
-                        @Override
-                        public void onFailure(Call<Cargo> call, Throwable t) {
+                            @Override
+                            public void onFailure(Call<Cargo> call, Throwable t) {
 
-                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
+                            }
+                        });
 
-                    Toast.makeText(getApplicationContext(), "Cargo atualizado com sucesso !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Cargo atualizado com sucesso !", Toast.LENGTH_LONG).show();
 
 
-                    finish();
+                        finish();
+
+                    }
+
 
                 }
 

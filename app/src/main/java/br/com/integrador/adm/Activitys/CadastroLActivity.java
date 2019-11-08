@@ -73,10 +73,7 @@ public class CadastroLActivity extends AppCompatActivity {
 
                     if (Nome.isEmpty()) {
 
-//                        Toast.makeText(getApplicationContext(), "O campo 'Nome' esta vazio !", Toast.LENGTH_LONG).show();
-
-                        Snackbar.make(v, "'Nome' esta vazio !", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
+                        setNomeLiga.setError("O campo Nome está vazio!");
 
 
                     } else {
@@ -113,32 +110,44 @@ public class CadastroLActivity extends AppCompatActivity {
 
                     String NomeLiga;
                     Integer ID = ItemLiga.getLigaId();
+                    setNomeLiga = (EditText) findViewById(R.id.setNomeLiga);
                     NomeLiga = setNomeLiga.getText().toString();
-                    Liga liga = new Liga(NomeLiga);
-                    Retrofit retrofit = APIClient.getClient();
-                    LigaResource ligaResource = retrofit.create(LigaResource.class);
-                    Call<Liga> call = ligaResource.put(ID, liga);
 
-                    call.enqueue(new Callback<Liga>() {
-                        @Override
-                        public void onResponse(Call<Liga> call, Response<Liga> response) {
+                    if (NomeLiga.isEmpty()) {
+
+                        setNomeLiga.setError("O campo Nome está vazio!");
+
+
+                    } else {
+
+                        Liga liga = new Liga(NomeLiga);
+                        Retrofit retrofit = APIClient.getClient();
+                        LigaResource ligaResource = retrofit.create(LigaResource.class);
+                        Call<Liga> call = ligaResource.put(ID, liga);
+
+                        call.enqueue(new Callback<Liga>() {
+                            @Override
+                            public void onResponse(Call<Liga> call, Response<Liga> response) {
 
 //                            Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
 
-                        }
+                            }
 
-                        @Override
-                        public void onFailure(Call<Liga> call, Throwable t) {
+                            @Override
+                            public void onFailure(Call<Liga> call, Throwable t) {
 
-                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
+                            }
+                        });
 
-                    Toast.makeText(getApplicationContext(), "Liga atualizada com sucesso !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Liga atualizada com sucesso !", Toast.LENGTH_LONG).show();
 
 
-                    finish();
+                        finish();
+
+                    }
+
 
                 }
 
@@ -174,7 +183,16 @@ public class CadastroLActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
 
-                                        Toast.makeText(getApplicationContext(), "Liga " + ID + " excluida com sucesso !", Toast.LENGTH_LONG).show();
+                                        if (response.code() == 204) {
+
+                                            Toast.makeText(getApplicationContext(), "Liga " + ID + " excluida com sucesso !", Toast.LENGTH_LONG).show();
+
+                                        } else {
+
+                                            Toast.makeText(getApplicationContext(), "Liga " + ID + " está relacionada a tabela Times", Toast.LENGTH_LONG).show();
+
+                                        }
+
 
                                     }
 

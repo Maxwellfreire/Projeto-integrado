@@ -76,10 +76,8 @@ public class CadastroMActivity extends AppCompatActivity {
 
                     if (Nome.isEmpty()) {
 
-//                        Toast.makeText(getApplicationContext(), "O campo 'Nome' esta vazio !", Toast.LENGTH_LONG).show();
 
-                        Snackbar.make(v, "'Nome' esta vazio !", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
+                        etNome.setError("O campo Nome está vazio!");
 
 
                     } else {
@@ -117,32 +115,45 @@ public class CadastroMActivity extends AppCompatActivity {
 
                     String NomeMarca;
                     Integer ID = ItemMarca.getId();
+                    etNome = (EditText) findViewById(R.id.setNomeMarca);
                     NomeMarca = etNome.getText().toString();
-                    Marca marca = new Marca(NomeMarca);
-                    Retrofit retrofit = APIClient.getClient();
-                    MarcaResource marcaResource = retrofit.create(MarcaResource.class);
-                    Call<Marca> call = marcaResource.put(ID, marca);
 
-                    call.enqueue(new Callback<Marca>() {
-                        @Override
-                        public void onResponse(Call<Marca> call, Response<Marca> response) {
+                    if (NomeMarca.isEmpty()) {
+
+
+                        etNome.setError("O campo Nome está vazio!");
+
+
+                    } else {
+
+                        Marca marca = new Marca(NomeMarca);
+                        Retrofit retrofit = APIClient.getClient();
+                        MarcaResource marcaResource = retrofit.create(MarcaResource.class);
+                        Call<Marca> call = marcaResource.put(ID, marca);
+
+                        call.enqueue(new Callback<Marca>() {
+                            @Override
+                            public void onResponse(Call<Marca> call, Response<Marca> response) {
 
 //                            Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
 
-                        }
+                            }
 
-                        @Override
-                        public void onFailure(Call<Marca> call, Throwable t) {
+                            @Override
+                            public void onFailure(Call<Marca> call, Throwable t) {
 
-                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
+                            }
+                        });
 
-                    Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
 
 
-                    finish();
+                        finish();
+
+                    }
+
 
                 }
 
@@ -179,7 +190,16 @@ public class CadastroMActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
 
-                                        Toast.makeText(getApplicationContext(), "Marca " + ID + " excluida com sucesso !", Toast.LENGTH_LONG).show();
+                                        if (response.code() == 204) {
+
+                                            Toast.makeText(getApplicationContext(), "Marca " + ID + " excluida com sucesso !", Toast.LENGTH_LONG).show();
+
+                                        } else {
+
+                                            Toast.makeText(getApplicationContext(), "Marca " + ID + " está relacionada a tabela Produtos", Toast.LENGTH_LONG).show();
+
+                                        }
+
 
                                     }
 

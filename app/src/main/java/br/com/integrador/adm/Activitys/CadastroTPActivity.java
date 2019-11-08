@@ -72,10 +72,7 @@ public class CadastroTPActivity extends AppCompatActivity {
 
                     if (Nome.isEmpty()) {
 
-//                        Toast.makeText(getApplicationContext(), "O campo 'Nome' esta vazio !", Toast.LENGTH_LONG).show();
-
-                        Snackbar.make(v, "'Nome' esta vazio !", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
+                        setNomeTipoproduto.setError("O campo Nome está vazio!");
 
 
                     } else {
@@ -113,32 +110,44 @@ public class CadastroTPActivity extends AppCompatActivity {
 
                     String NomeTipoproduto;
                     Integer ID = ItemTipoproduto.getId();
+                    setNomeTipoproduto = (EditText) findViewById(R.id.setNomeTipoproduto);
                     NomeTipoproduto = setNomeTipoproduto.getText().toString();
-                    Tipoproduto tipoproduto = new Tipoproduto(NomeTipoproduto);
-                    Retrofit retrofit = APIClient.getClient();
-                    TipoprodutoResource tipoprodutoResource = retrofit.create(TipoprodutoResource.class);
-                    Call<Tipoproduto> call = tipoprodutoResource.put(ID, tipoproduto);
 
-                    call.enqueue(new Callback<Tipoproduto>() {
-                        @Override
-                        public void onResponse(Call<Tipoproduto> call, Response<Tipoproduto> response) {
+                    if (NomeTipoproduto.isEmpty()) {
+
+                        setNomeTipoproduto.setError("O campo Nome está vazio!");
+
+
+                    } else {
+
+                        Tipoproduto tipoproduto = new Tipoproduto(NomeTipoproduto);
+                        Retrofit retrofit = APIClient.getClient();
+                        TipoprodutoResource tipoprodutoResource = retrofit.create(TipoprodutoResource.class);
+                        Call<Tipoproduto> call = tipoprodutoResource.put(ID, tipoproduto);
+
+                        call.enqueue(new Callback<Tipoproduto>() {
+                            @Override
+                            public void onResponse(Call<Tipoproduto> call, Response<Tipoproduto> response) {
 
 //                            Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
 
-                        }
+                            }
 
-                        @Override
-                        public void onFailure(Call<Tipoproduto> call, Throwable t) {
+                            @Override
+                            public void onFailure(Call<Tipoproduto> call, Throwable t) {
 
-                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
+                            }
+                        });
 
-                    Toast.makeText(getApplicationContext(), "Tipo do produto atualizado com sucesso !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Tipo do produto atualizado com sucesso !", Toast.LENGTH_LONG).show();
 
 
-                    finish();
+                        finish();
+
+                    }
+
 
                 }
 
@@ -175,7 +184,16 @@ public class CadastroTPActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
 
-                                        Toast.makeText(getApplicationContext(), "Tipo do produto " + ID + " excluido com sucesso !", Toast.LENGTH_LONG).show();
+                                        if (response.code() == 204) {
+
+                                            Toast.makeText(getApplicationContext(), "Tipo do produto " + ID + " excluido com sucesso !", Toast.LENGTH_LONG).show();
+
+                                        } else {
+
+                                            Toast.makeText(getApplicationContext(), "Tipo do produto " + ID + " está relacionada a tabela Produtos", Toast.LENGTH_LONG).show();
+
+                                        }
+
 
                                     }
 

@@ -75,12 +75,16 @@ public class CadastroCDActivity extends AppCompatActivity {
                     String Nome = setNomeCDesconto.getText().toString();
                     String Valor = setValorCDesconto.getText().toString();
 
-                    if (Nome.isEmpty() && Valor.isEmpty()) {
+                    if (Nome.isEmpty()) {
 
-                        //Toast.makeText(getApplicationContext(), "O campo 'Nome e Salario' esta vazio !", Toast.LENGTH_LONG).show();
 
-                        Snackbar.make(v, "'Nome e Salario' esta vazio !", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
+                        setNomeCDesconto.setError("O campo Nome está vazio!");
+
+
+                    } else if (Valor.isEmpty()) {
+
+
+                        setValorCDesconto.setError("O campo Valor está vazio!");
 
 
                     } else {
@@ -111,42 +115,62 @@ public class CadastroCDActivity extends AppCompatActivity {
                         });
 
                         finish();
-
                     }
 
 
                 } else {
 
-                    String NomeCDesconto, ValorCDesconto;
+
                     Integer ID = ItemCupomdesconto.getId();
+                    setNomeCDesconto = (EditText) findViewById(R.id.setNomeCDesconto);
+                    setValorCDesconto = (EditText) findViewById(R.id.setValorCDesconto);
+                    String Nome = setNomeCDesconto.getText().toString();
+                    String Valor = setValorCDesconto.getText().toString();
 
-                    NomeCDesconto = setNomeCDesconto.getText().toString();
-                    ValorCDesconto = setValorCDesconto.getText().toString();
-                    Cupomdesconto cupomdesconto = new Cupomdesconto(NomeCDesconto, ValorCDesconto);
-                    Retrofit retrofit = APIClient.getClient();
-                    CupomdescontoResource cupomdescontoResource = retrofit.create(CupomdescontoResource.class);
-                    Call<Cupomdesconto> call = cupomdescontoResource.put(ID, cupomdesconto);
+                    if (Nome.isEmpty()) {
 
-                    call.enqueue(new Callback<Cupomdesconto>() {
-                        @Override
-                        public void onResponse(Call<Cupomdesconto> call, Response<Cupomdesconto> response) {
+
+                        setNomeCDesconto.setError("O campo Nome está vazio!");
+
+
+                    } else if (Valor.isEmpty()) {
+
+
+                        setValorCDesconto.setError("O campo Valor está vazio!");
+
+
+                    } else {
+
+                        String NomeCDesconto, ValorCDesconto;
+                        NomeCDesconto = setNomeCDesconto.getText().toString();
+                        ValorCDesconto = setValorCDesconto.getText().toString();
+                        Cupomdesconto cupomdesconto = new Cupomdesconto(NomeCDesconto, ValorCDesconto);
+                        Retrofit retrofit = APIClient.getClient();
+                        CupomdescontoResource cupomdescontoResource = retrofit.create(CupomdescontoResource.class);
+                        Call<Cupomdesconto> call = cupomdescontoResource.put(ID, cupomdesconto);
+
+                        call.enqueue(new Callback<Cupomdesconto>() {
+                            @Override
+                            public void onResponse(Call<Cupomdesconto> call, Response<Cupomdesconto> response) {
 
 //                            Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
 
-                        }
+                            }
 
-                        @Override
-                        public void onFailure(Call<Cupomdesconto> call, Throwable t) {
+                            @Override
+                            public void onFailure(Call<Cupomdesconto> call, Throwable t) {
 
-                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
+                            }
+                        });
 
-                    Toast.makeText(getApplicationContext(), "Cupom desconto atualizado com sucesso !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Cupom desconto atualizado com sucesso !", Toast.LENGTH_LONG).show();
 
 
-                    finish();
+                        finish();
+                    }
+
 
                 }
 
