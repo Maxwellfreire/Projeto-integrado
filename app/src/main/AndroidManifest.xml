@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activitys.VisualActivity"></activity>
+        <activity android:name=".Activitys.CadastroFActivity"></activity>
+        <activity android:name=".Activitys.FuncionarioActivity" />
+        <activity android:name=".Activitys.VisualActivity" />
         <activity android:name=".Activitys.CadastroPActivity" />
         <activity android:name=".Activitys.ProdutoActivity" />
         <activity android:name=".Activitys.CadastroCDActivity" />

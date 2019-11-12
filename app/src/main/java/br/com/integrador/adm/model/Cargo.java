@@ -42,10 +42,6 @@ public class Cargo implements Serializable {
 
     @Override
     public String toString() {
-        return "Cargo{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", salary='" + salary + '\'' +
-                '}';
+        return  name ;
     }
 }
