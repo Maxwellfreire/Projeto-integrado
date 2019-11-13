@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activitys.CadastroFActivity"></activity>
+        <activity android:name=".InicioActivity"></activity>
+        <activity android:name=".Activitys.CadastroFActivity" />
         <activity android:name=".Activitys.FuncionarioActivity" />
         <activity android:name=".Activitys.VisualActivity" />
         <activity android:name=".Activitys.CadastroPActivity" />
@@ -30,7 +31,7 @@
         <activity android:name=".Activitys.CargoActivity" />
         <activity android:name=".Activitys.CadastroMActivity" />
         <activity android:name=".Activitys.MarcaActivity" />
-        <activity android:name=".InicioActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

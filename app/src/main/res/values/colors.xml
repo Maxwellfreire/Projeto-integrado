@@ -13,6 +13,11 @@
     <color name="testcolorblue">#152b38</color>
     <color name="pink">#FF0E0E</color>
     <color name="corPar">#6027B0</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlueT">#6428a2cf</color>
+    <color name="colorPurpleT">#64a130ff</color>
+    <color name="colorPurple">#A130FF</color>
+    <color name="colorBlue">#28A2CF</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>

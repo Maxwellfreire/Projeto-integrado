@@ -36,7 +36,7 @@ import retrofit2.Retrofit;
 public class CadastroFActivity extends AppCompatActivity {
     private Funcionario ItemFuncionario;
     private TextView setIDFuncionario;
-    private EditText setNomeFuncionario, setCPFFuncionario, setEmailFuncionario, setTelefoneFuncionario, setCelularFuncionario, setNascFuncionario;
+    private EditText setNomeFuncionario, setCPFFuncionario, setEmailFuncionario, setTelefoneFuncionario, setConfirmaSFuncionario, setSenhaFuncionario, setCelularFuncionario, setNascFuncionario;
     Button btnSalvarFuncionario, btnExcluirFuncionario;
     TextView txtFuncionario;
 
@@ -146,27 +146,124 @@ public class CadastroFActivity extends AppCompatActivity {
                     setEmailFuncionario = (EditText) findViewById(R.id.setEmailFuncionario);
                     setTelefoneFuncionario = (EditText) findViewById(R.id.setTelefoneFuncionario);
                     setCelularFuncionario = (EditText) findViewById(R.id.setCelularFuncionario);
+                    setSenhaFuncionario = (EditText) findViewById(R.id.setSenhaFuncionario);
+                    setConfirmaSFuncionario = (EditText) findViewById(R.id.setConfirmaSFuncionario);
                     setNascFuncionario = (EditText) findViewById(R.id.setNascFuncionario);
 
 
-                    String NomeFuncionario, cpffuncionario, emailfuncionario, telefuncionario, celularfuncionario, nascfuncionario;
-
-                    String senha = "123";
-                    String senhaconf = "123";
+                    String NomeFuncionario, cpffuncionario, emailfuncionario, telefuncionario, celularfuncionario, nascfuncionario, senha, confirmaSenha;
 
 
                     NomeFuncionario = setNomeFuncionario.getText().toString();
-
 
                     cpffuncionario = setCPFFuncionario.getText().toString();
 
                     emailfuncionario = setEmailFuncionario.getText().toString();
 
+                    telefuncionario = setTelefoneFuncionario.getText().toString();
+
+                    celularfuncionario = setCelularFuncionario.getText().toString();
+
+                    senha = setSenhaFuncionario.getText().toString();
+
+                    confirmaSenha = setConfirmaSFuncionario.getText().toString();
+
+                    nascfuncionario = setNascFuncionario.getText().toString();
+
+                    if (NomeFuncionario.isEmpty()) {
+
+
+                        setNomeFuncionario.setError("Nome está vazio!");
+
+
+                    } else if (cpffuncionario.isEmpty()) {
+
+
+                        setCPFFuncionario.setError("CPF está vazio!");
+
+
+                    } else if (emailfuncionario.isEmpty()) {
+
+                        setEmailFuncionario.setError("Email está vazio!");
+
+
+                    } else if (telefuncionario.isEmpty()) {
+
+                        setTelefoneFuncionario.setError("Telefone está vazio!");
+
+                    } else if (celularfuncionario.isEmpty()) {
+
+                        setCelularFuncionario.setError("Celular está vazio!");
+
+                    } else if (nascfuncionario.isEmpty()) {
+
+                        setNascFuncionario.setError("Data de nascimento está vazio!");
+
+
+                    } else {
+
+
+                        String SexoFuncionario = String.valueOf(setSexoFuncionario.getSelectedItem());
+
+                        Cargo cargoSelecionada = (Cargo) setCargoFuncionario.getSelectedItem();
+                        int idSelecionado = cargoSelecionada.getId();
+
+                        Funcionario funcionario = new Funcionario(NomeFuncionario, cpffuncionario, SexoFuncionario, emailfuncionario,
+                                telefuncionario, celularfuncionario, senha, confirmaSenha, nascfuncionario, idSelecionado);
+                        Retrofit retrofit = APIClient.getClient();
+                        FuncionarioResource funcionarioResource = retrofit.create(FuncionarioResource.class);
+                        Call<Funcionario> call = funcionarioResource.post(funcionario);
+
+                        call.enqueue(new Callback<Funcionario>() {
+                            @Override
+                            public void onResponse(Call<Funcionario> call, Response<Funcionario> response) {
+
+                                Toast.makeText(getApplicationContext(), "Funcionario cadastrado com sucesso !", Toast.LENGTH_LONG).show();
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Funcionario> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
+                        finish();
+
+
+                    }
+
+
+                } else {
+
+
+                    String NomeFuncionario, cpffuncionario, emailfuncionario, telefuncionario, celularfuncionario, nascfuncionario, senha, confirmaSenha;
+                    Integer ID = ItemFuncionario.getMatricula();
+                    setNomeFuncionario = (EditText) findViewById(R.id.setNomeFuncionario);
+                    setCPFFuncionario = (EditText) findViewById(R.id.setCPFFuncionario);
+                    setEmailFuncionario = (EditText) findViewById(R.id.setEmailFuncionario);
+                    setTelefoneFuncionario = (EditText) findViewById(R.id.setTelefoneFuncionario);
+                    setCelularFuncionario = (EditText) findViewById(R.id.setCelularFuncionario);
+                    setSenhaFuncionario = (EditText) findViewById(R.id.setSenhaFuncionario);
+                    setConfirmaSFuncionario = (EditText) findViewById(R.id.setConfirmaSFuncionario);
+                    setNascFuncionario = (EditText) findViewById(R.id.setNascFuncionario);
+
+
+                    NomeFuncionario = setNomeFuncionario.getText().toString();
+
+                    cpffuncionario = setCPFFuncionario.getText().toString();
+
+                    emailfuncionario = setEmailFuncionario.getText().toString();
 
                     telefuncionario = setTelefoneFuncionario.getText().toString();
 
                     celularfuncionario = setCelularFuncionario.getText().toString();
 
+                    senha = setSenhaFuncionario.getText().toString();
+
+                    confirmaSenha = setConfirmaSFuncionario.getText().toString();
 
                     nascfuncionario = setNascFuncionario.getText().toString();
 
@@ -207,26 +304,28 @@ public class CadastroFActivity extends AppCompatActivity {
                         int idSelecionado = cargoSelecionada.getId();
 
                         Funcionario funcionario = new Funcionario(NomeFuncionario, cpffuncionario, SexoFuncionario, emailfuncionario,
-                                telefuncionario, celularfuncionario, senha, senhaconf, nascfuncionario, idSelecionado);
+                                telefuncionario, celularfuncionario, senha, confirmaSenha, nascfuncionario, idSelecionado);
                         Retrofit retrofit = APIClient.getClient();
                         FuncionarioResource funcionarioResource = retrofit.create(FuncionarioResource.class);
-                        Call<Funcionario> call = funcionarioResource.post(funcionario);
+                        Call<Funcionario> call = funcionarioResource.put(ID, funcionario);
 
                         call.enqueue(new Callback<Funcionario>() {
                             @Override
                             public void onResponse(Call<Funcionario> call, Response<Funcionario> response) {
-
-                                Toast.makeText(getApplicationContext(), "Funcionario cadastrado com sucesso !", Toast.LENGTH_LONG).show();
 
 
                             }
 
                             @Override
                             public void onFailure(Call<Funcionario> call, Throwable t) {
+
                                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
                             }
                         });
+
+                        Toast.makeText(getApplicationContext(), "Funcionario atualizado com sucesso !", Toast.LENGTH_LONG).show();
+
 
                         finish();
 
@@ -235,107 +334,6 @@ public class CadastroFActivity extends AppCompatActivity {
 
 
                 }
-//                else {
-//
-//
-//                    String NomeFuncionario, cpffuncionario, emailfuncionario, telefuncionario, celularfuncionario, nascfuncionario;
-//                    Integer ID = ItemFuncionario.getMatricula();
-//                    setNomeFuncionario = (EditText) findViewById(R.id.setNomeFuncionario);
-//                    setCPFFuncionario = (EditText) findViewById(R.id.setCPFFuncionario);
-//                    setEmailFuncionario = (EditText) findViewById(R.id.setEmailFuncionario);
-//                    setTelefoneFuncionario = (EditText) findViewById(R.id.setTelefoneFuncionario);
-//                    setCelularFuncionario = (EditText) findViewById(R.id.setCelularFuncionario);
-//                    setNascFuncionario = (EditText) findViewById(R.id.setNascFuncionario);
-//
-//                    String senha = "123";
-//                    String senhaconf = "123";
-//
-//
-//                    NomeFuncionario = setNomeFuncionario.getText().toString();
-//
-//
-//                    cpffuncionario = setCPFFuncionario.getText().toString();
-//
-//                    emailfuncionario = setEmailFuncionario.getText().toString();
-//
-//
-//                    telefuncionario = setTelefoneFuncionario.getText().toString();
-//
-//                    celularfuncionario = setCelularFuncionario.getText().toString();
-//
-//
-//                    nascfuncionario = setNascFuncionario.getText().toString();
-//
-//                    if (NomeFuncionario.isEmpty()) {
-//
-//
-//                        setNomeFuncionario.setError("Nome está vazio!");
-//
-//
-//                    } else if (cpffuncionario.isEmpty()) {
-//
-//
-//                        setCPFFuncionario.setError("CPF está vazio!");
-//
-//
-//                    } else if (emailfuncionario.isEmpty()) {
-//
-//                        setEmailFuncionario.setError("Email está vazio!");
-//
-//
-//                    } else if (telefuncionario.isEmpty()) {
-//
-//                        setTelefoneFuncionario.setError("Telefone está vazio!");
-//
-//                    } else if (celularfuncionario.isEmpty()) {
-//
-//                        setCelularFuncionario.setError("Celular está vazio!");
-//
-//                    } else if (nascfuncionario.isEmpty()) {
-//
-//                        setCPFFuncionario.setError("Data de nascimento está vazio!");
-//
-//                    } else {
-//
-//                        String Regiao = String.valueOf(setRegiaoTime.getSelectedItem());
-//
-//                        String Estado = String.valueOf(setEstadoTime.getSelectedItem());
-//
-//                        String tipotime = String.valueOf(setTipoTimeTime.getSelectedItem());
-//
-//                        Liga ligaSelecionada = (Liga) setLigasTime.getSelectedItem();
-//                        int idSelecionado = ligaSelecionada.getLigaId();
-//
-//                        Time time = new Time(NomeTime, Regiao, Estado, PaisTime, tipotime, idSelecionado);
-//                        Retrofit retrofit = APIClient.getClient();
-//                        TimeResource timeResource = retrofit.create(TimeResource.class);
-//                        Call<Time> call = timeResource.put(ID, time);
-//
-//                        call.enqueue(new Callback<Time>() {
-//                            @Override
-//                            public void onResponse(Call<Time> call, Response<Time> response) {
-//
-//
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<Time> call, Throwable t) {
-//
-//                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                            }
-//                        });
-//
-//                        Toast.makeText(getApplicationContext(), "Time atualizado com sucesso !", Toast.LENGTH_LONG).show();
-//
-//
-//                        finish();
-//
-//
-//                    }
-//
-//
-//                }
 
 
             }
