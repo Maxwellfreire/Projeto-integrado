@@ -8,7 +8,7 @@ public class Produto implements Serializable {
     private String imagem;
     private String nameProduto;
     private String desc;
-    private Integer preco;
+    private String preco;
     private String tipoGola;
     private String tipoManga;
     private String tamanho;
@@ -19,7 +19,7 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(String imagem, String nameProduto, String desc, Integer preco, String tipoGola, String tipoManga, String tamanho, Integer idTime, Integer idTipoProduto, Integer idMarca) {
+    public Produto(String imagem, String nameProduto, String desc, String preco, String tipoGola, String tipoManga, String tamanho, Integer idTime, Integer idTipoProduto, Integer idMarca) {
         this.imagem = imagem;
         this.nameProduto = nameProduto;
         this.desc = desc;
@@ -64,11 +64,11 @@ public class Produto implements Serializable {
         this.desc = desc;
     }
 
-    public Integer getPreco() {
+    public String getPreco() {
         return preco;
     }
 
-    public void setPreco(Integer preco) {
+    public void setPreco(String preco) {
         this.preco = preco;
     }
 
@@ -127,7 +127,7 @@ public class Produto implements Serializable {
                 ", imagem='" + imagem + '\'' +
                 ", nameProduto='" + nameProduto + '\'' +
                 ", desc='" + desc + '\'' +
-                ", preco=" + preco +
+                ", preco='" + preco + '\'' +
                 ", tipoGola='" + tipoGola + '\'' +
                 ", tipoManga='" + tipoManga + '\'' +
                 ", tamanho='" + tamanho + '\'' +

@@ -123,7 +123,7 @@ public class CadastroPActivity extends AppCompatActivity {
             setIDProduto.setText(Integer.toString(ItemProduto.getIdProduto()));
             setNomeProduto.setText(ItemProduto.getNameProduto());
             setDescProduto.setText(ItemProduto.getDesc());
-            setPrecoProduto.setText(Integer.toString(ItemProduto.getPreco()));
+            setPrecoProduto.setText(ItemProduto.getPreco());
 
             try {
 
@@ -243,7 +243,7 @@ public class CadastroPActivity extends AppCompatActivity {
 
                         } else {
 
-                            int numeroPreco = Integer.parseInt(PrecoProduto);
+//                            int numeroPreco = Integer.parseInt(PrecoProduto);
 
                             String TipoGola = String.valueOf(setTipogolaSpinner.getSelectedItem());
 
@@ -261,7 +261,7 @@ public class CadastroPActivity extends AppCompatActivity {
                             Marca marcaSelecionado = (Marca) setMarcaSpinnerProduto.getSelectedItem();
                             int idMSelecionado = marcaSelecionado.getId();
 
-                            Produto produto = new Produto(code, NomeProduto, DescProduto, numeroPreco,
+                            Produto produto = new Produto(code, NomeProduto, DescProduto, PrecoProduto,
                                     TipoGola, TipoManga, Tamanho, idTSelecionado, idTPSelecionado, idMSelecionado);
                             Retrofit retrofit = APIClient.getClient();
                             ProdutoResource produtoResource = retrofit.create(ProdutoResource.class);
@@ -321,7 +321,7 @@ public class CadastroPActivity extends AppCompatActivity {
 
                         } else {
 
-                            int numeroPreco = Integer.parseInt(PrecoProduto);
+//                            int numeroPreco = Integer.parseInt(PrecoProduto);
 
                             String TipoGola = String.valueOf(setTipogolaSpinner.getSelectedItem());
 
@@ -339,7 +339,7 @@ public class CadastroPActivity extends AppCompatActivity {
                             Marca marcaSelecionado = (Marca) setMarcaSpinnerProduto.getSelectedItem();
                             int idMSelecionado = marcaSelecionado.getId();
 
-                            Produto produto = new Produto(code, NomeProduto, DescProduto, numeroPreco,
+                            Produto produto = new Produto(code, NomeProduto, DescProduto, PrecoProduto,
                                     TipoGola, TipoManga, Tamanho, idTSelecionado, idTPSelecionado, idMSelecionado);
                             Retrofit retrofit = APIClient.getClient();
                             ProdutoResource produtoResource = retrofit.create(ProdutoResource.class);
@@ -415,7 +415,7 @@ public class CadastroPActivity extends AppCompatActivity {
 
                     } else {
 
-                        int numeroPreco = Integer.parseInt(PrecoProduto);
+//                        int numeroPreco = Integer.parseInt(PrecoProduto);
 
                         String TipoGola = String.valueOf(setTipogolaSpinner.getSelectedItem());
 
@@ -433,7 +433,7 @@ public class CadastroPActivity extends AppCompatActivity {
                         Marca marcaSelecionado = (Marca) setMarcaSpinnerProduto.getSelectedItem();
                         int idMSelecionado = marcaSelecionado.getId();
 
-                        Produto produto = new Produto(code, NomeProduto, DescProduto, numeroPreco,
+                        Produto produto = new Produto(code, NomeProduto, DescProduto, PrecoProduto,
                                 TipoGola, TipoManga, Tamanho, idTSelecionado, idTPSelecionado, idMSelecionado);
                         Retrofit retrofit = APIClient.getClient();
                         ProdutoResource produtoResource = retrofit.create(ProdutoResource.class);

@@ -17,6 +17,7 @@ import java.util.List;
 import br.com.integrador.adm.Activitys.CadastroPActivity;
 import br.com.integrador.adm.Activitys.CadastroTActivity;
 import br.com.integrador.adm.R;
+import br.com.integrador.adm.model.Cargo;
 import br.com.integrador.adm.model.Produto;
 import br.com.integrador.adm.model.Time;
 
@@ -102,13 +103,15 @@ public class APIAdapterProduto extends BaseAdapter {
         campoID.setText(Integer.toString(produto.getIdProduto()));
         campoNOME.setText(produto.getNameProduto());
         campoDESC.setText(produto.getDesc());
-        campoPRECO.setText(Integer.toString(produto.getPreco()));
+        campoPRECO.setText(produto.getPreco());
         campoTGProduto.setText(produto.getTipoGola());
         campoTMProduto.setText(produto.getTipoManga());
         campoTAMANHO.setText(produto.getTamanho());
         campoTProduto.setText(Integer.toString(produto.getIdTime()));
         campoTPProduto.setText(Integer.toString(produto.getIdTipoProduto()));
         campoMProduto.setText(Integer.toString(produto.getIdMarca()));
+
+
 
 
         view.setOnClickListener(new View.OnClickListener() {

@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import br.com.integrador.adm.Activitys.CadastroMActivity;
 import br.com.integrador.adm.boostrap.APIClient;
+import br.com.integrador.adm.model.Cargo;
 import br.com.integrador.adm.model.Login;
 import br.com.integrador.adm.resource.LoginResource;
 import retrofit2.Call;
@@ -45,12 +46,12 @@ public class LoginActivity extends AppCompatActivity {
 
         } else if (Senha.isEmpty()) {
 
-            etSenha.setError("Senha está vazio !");
+            etSenha.setError("Senha está vazia !");
 
         } else {
 
 
-            Login login = new Login(Nome, Senha);
+            final Login login = new Login(Nome, Senha);
             Retrofit retrofit = APIClient.getClient();
             LoginResource loginResource = retrofit.create(LoginResource.class);
             Call<Login> call = loginResource.post(login);
@@ -70,7 +71,10 @@ public class LoginActivity extends AppCompatActivity {
 
                     } else {
 
+
                         startActivity(new Intent(getApplicationContext(), InicioActivity.class));
+
+                        Toast.makeText(getApplicationContext(), login.getEmail() + " está logado !", Toast.LENGTH_LONG).show();
 
                     }
 

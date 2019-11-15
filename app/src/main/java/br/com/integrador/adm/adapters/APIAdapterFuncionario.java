@@ -13,6 +13,7 @@ import java.util.List;
 import br.com.integrador.adm.Activitys.CadastroFActivity;
 import br.com.integrador.adm.Activitys.CadastroTActivity;
 import br.com.integrador.adm.R;
+import br.com.integrador.adm.model.Cargo;
 import br.com.integrador.adm.model.Funcionario;
 import br.com.integrador.adm.model.Time;
 
@@ -68,9 +69,10 @@ public class APIAdapterFuncionario extends BaseAdapter {
         // pega o objeto corrente da lista
         Funcionario funcionario = parsetItem(i);
 
-        TextView campoID, campoNOME,campoCPF,campoSEXO,campoEMAIL,campoTELEFONE,campoCELULAR,campoNasc,CampoIDCARGOF;
 
-        view = LayoutInflater.from(context).inflate(R.layout.item_funcionario,null);
+        TextView campoID, campoNOME, campoCPF, campoSEXO, campoEMAIL, campoTELEFONE, campoCELULAR, campoNasc, CampoIDCARGOF;
+
+        view = LayoutInflater.from(context).inflate(R.layout.item_funcionario, null);
 
         campoID = view.findViewById(R.id.getIDFuncionario);
         campoNOME = view.findViewById(R.id.getNomeFuncionario);
@@ -98,13 +100,11 @@ public class APIAdapterFuncionario extends BaseAdapter {
 
                 Intent intent = new Intent(context, CadastroFActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("objetoDataFuncionario",Item);
+                intent.putExtra("objetoDataFuncionario", Item);
                 context.startActivity(intent);
 
             }
         });
-
-
 
 
         return view;
