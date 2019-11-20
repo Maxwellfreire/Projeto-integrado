@@ -8,18 +8,31 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import br.com.integrador.adm.Activitys.CadastroPActivity;
 import br.com.integrador.adm.Activitys.CadastroTActivity;
 import br.com.integrador.adm.R;
+import br.com.integrador.adm.boostrap.APIClient;
 import br.com.integrador.adm.model.Cargo;
+import br.com.integrador.adm.model.Marca;
 import br.com.integrador.adm.model.Produto;
 import br.com.integrador.adm.model.Time;
+import br.com.integrador.adm.model.Tipoproduto;
+import br.com.integrador.adm.resource.MarcaResource;
+import br.com.integrador.adm.resource.TimeResource;
+import br.com.integrador.adm.resource.TipoprodutoResource;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 /**
@@ -71,9 +84,9 @@ public class APIAdapterProduto extends BaseAdapter {
         }
 
         // pega o objeto corrente da lista
-        Produto produto = parsetItem(i);
+        final Produto produto = parsetItem(i);
 
-        TextView campoID, campoNOME, campoDESC, campoPRECO, campoTGProduto,
+        final TextView campoID, campoNOME, campoDESC, campoPRECO, campoTGProduto,
                 campoTMProduto, campoTAMANHO, campoTProduto, campoTPProduto, campoMProduto;
 
         ImageView campoImagem;
@@ -107,11 +120,115 @@ public class APIAdapterProduto extends BaseAdapter {
         campoTGProduto.setText(produto.getTipoGola());
         campoTMProduto.setText(produto.getTipoManga());
         campoTAMANHO.setText(produto.getTamanho());
-        campoTProduto.setText(Integer.toString(produto.getIdTime()));
-        campoTPProduto.setText(Integer.toString(produto.getIdTipoProduto()));
-        campoMProduto.setText(Integer.toString(produto.getIdMarca()));
+
+        Retrofit retrofit = APIClient.getClient();
+
+        TimeResource timeResource = retrofit.create(TimeResource.class);
+
+        Call<List<Time>> get = timeResource.get();
+
+        get.enqueue(new Callback<List<Time>>() {
+            @Override
+            public void onResponse(Call<List<Time>> call, Response<List<Time>> response) {
 
 
+                Time t = new Time();
+
+
+                List<Time> times = response.body();
+
+                for (Time time : times) {
+                    if (time.getIdTime() == produto.getIdTime()) {
+                        t = time;
+                    }
+                }
+
+
+                campoTProduto.setText(t.getNameTime());
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Time>> call, Throwable t) {
+                Toast.makeText(context.getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        });
+
+        Retrofit retrofitt = APIClient.getClient();
+
+        TipoprodutoResource tipoprodutoResource = retrofitt.create(TipoprodutoResource.class);
+
+        Call<List<Tipoproduto>> gett = tipoprodutoResource.get();
+
+        gett.enqueue(new Callback<List<Tipoproduto>>() {
+            @Override
+            public void onResponse(Call<List<Tipoproduto>> call, Response<List<Tipoproduto>> response) {
+
+                Tipoproduto tp = new Tipoproduto();
+
+
+                List<Tipoproduto> tipoprodutos = response.body();
+
+                for (Tipoproduto tipoproduto : tipoprodutos) {
+                    if (tipoproduto.getId() == produto.getIdTipoProduto()) {
+                        tp = tipoproduto;
+                    }
+                }
+
+
+                campoTPProduto.setText(tp.getName());
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Tipoproduto>> call, Throwable t) {
+                Toast.makeText(context.getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        });
+
+
+        Retrofit retrofittt = APIClient.getClient();
+
+        MarcaResource marcaResource = retrofittt.create(MarcaResource.class);
+
+        Call<List<Marca>> gettt = marcaResource.get();
+
+        gettt.enqueue(new Callback<List<Marca>>() {
+            @Override
+            public void onResponse(Call<List<Marca>> call, Response<List<Marca>> response) {
+
+                Marca m = new Marca();
+
+
+                List<Marca> marcas = response.body();
+
+                for (Marca marca : marcas) {
+                    if (marca.getId() == produto.getIdMarca()) {
+                        m = marca;
+                    }
+                }
+
+
+                campoMProduto.setText(m.getName());
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Marca>> call, Throwable t) {
+                Toast.makeText(context.getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        });
 
 
         view.setOnClickListener(new View.OnClickListener() {

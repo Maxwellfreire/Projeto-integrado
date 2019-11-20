@@ -5,16 +5,26 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import br.com.integrador.adm.Activitys.CadastroCActivity;
 import br.com.integrador.adm.Activitys.CadastroTActivity;
 import br.com.integrador.adm.R;
+import br.com.integrador.adm.boostrap.APIClient;
 import br.com.integrador.adm.model.Cargo;
+import br.com.integrador.adm.model.Liga;
 import br.com.integrador.adm.model.Time;
+import br.com.integrador.adm.resource.LigaResource;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 /**
@@ -66,11 +76,11 @@ public class APIAdapterTime extends BaseAdapter {
         }
 
         // pega o objeto corrente da lista
-        Time time = parsetItem(i);
+        final Time time = parsetItem(i);
 
-        TextView campoID, campoNOME,campoREGIAO,campoESTADO,campoPAIS,campoTIPOTIME,campoLIGA;
+        final TextView campoID, campoNOME, campoREGIAO, campoESTADO, campoPAIS, campoTIPOTIME, campoLIGA;
 
-        view = LayoutInflater.from(context).inflate(R.layout.item_time,null);
+        view = LayoutInflater.from(context).inflate(R.layout.item_time, null);
 
         campoID = view.findViewById(R.id.getIDTime);
         campoNOME = view.findViewById(R.id.getNomeTime);
@@ -86,7 +96,44 @@ public class APIAdapterTime extends BaseAdapter {
         campoESTADO.setText(time.getEstado());
         campoPAIS.setText(time.getPais());
         campoTIPOTIME.setText(time.getTipoTime());
-        campoLIGA.setText(Integer.toString(time.getLigaId()));
+
+        Retrofit retrofit = APIClient.getClient();
+
+        LigaResource ligaResource = retrofit.create(LigaResource.class);
+
+        Call<List<Liga>> get = ligaResource.get();
+
+        get.enqueue(new Callback<List<Liga>>() {
+            @Override
+            public void onResponse(Call<List<Liga>> call, Response<List<Liga>> response) {
+
+
+                Liga l = new Liga();
+
+
+                List<Liga> ligas = response.body();
+
+                for (Liga liga : ligas) {
+                    if (liga.getLigaId() == time.getLigaId()) {
+                        l = liga;
+                    }
+                }
+
+                
+                campoLIGA.setText(l.getName());
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Liga>> call, Throwable t) {
+                Toast.makeText(context.getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        });
+
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,13 +141,11 @@ public class APIAdapterTime extends BaseAdapter {
 
                 Intent intent = new Intent(context, CadastroTActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("objetoDataTime",Item);
+                intent.putExtra("objetoDataTime", Item);
                 context.startActivity(intent);
 
             }
         });
-
-
 
 
         return view;

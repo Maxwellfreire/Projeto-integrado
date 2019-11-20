@@ -5,17 +5,26 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import br.com.integrador.adm.Activitys.CadastroFActivity;
 import br.com.integrador.adm.Activitys.CadastroTActivity;
 import br.com.integrador.adm.R;
+import br.com.integrador.adm.boostrap.APIClient;
 import br.com.integrador.adm.model.Cargo;
 import br.com.integrador.adm.model.Funcionario;
 import br.com.integrador.adm.model.Time;
+import br.com.integrador.adm.resource.CargoResource;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 /**
@@ -67,10 +76,10 @@ public class APIAdapterFuncionario extends BaseAdapter {
         }
 
         // pega o objeto corrente da lista
-        Funcionario funcionario = parsetItem(i);
+        final Funcionario funcionario = parsetItem(i);
 
 
-        TextView campoID, campoNOME, campoCPF, campoSEXO, campoEMAIL, campoTELEFONE, campoCELULAR, campoNasc, CampoIDCARGOF;
+        final TextView campoID, campoNOME, campoCPF, campoSEXO, campoEMAIL, campoTELEFONE, campoCELULAR, campoNasc, CampoIDCARGOF;
 
         view = LayoutInflater.from(context).inflate(R.layout.item_funcionario, null);
 
@@ -92,7 +101,42 @@ public class APIAdapterFuncionario extends BaseAdapter {
         campoTELEFONE.setText(funcionario.getTelefone());
         campoCELULAR.setText(funcionario.getCelular());
         campoNasc.setText(funcionario.getDataNascimento());
-        CampoIDCARGOF.setText(Integer.toString(funcionario.getCargoId()));
+
+        Retrofit retrofit = APIClient.getClient();
+
+        CargoResource cargoResource = retrofit.create(CargoResource.class);
+
+        Call<List<Cargo>> get = cargoResource.get();
+
+        get.enqueue(new Callback<List<Cargo>>() {
+            @Override
+            public void onResponse(Call<List<Cargo>> call, Response<List<Cargo>> response) {
+
+                Cargo c = new Cargo();
+
+
+                List<Cargo> cargos = response.body();
+
+                for (Cargo cargo : cargos) {
+                    if (cargo.getId() == funcionario.getCargoId()) {
+                        c = cargo;
+                    }
+                }
+
+                CampoIDCARGOF.setText(c.getName());
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Cargo>> call, Throwable t) {
+                Toast.makeText(context.getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        });
+
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
