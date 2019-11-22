@@ -185,11 +185,31 @@ public class CadastroLActivity extends AppCompatActivity {
 
                                         if (response.code() == 204) {
 
+                                            finish();
+
                                             Toast.makeText(getApplicationContext(), "Liga " + ID + " excluida com sucesso !", Toast.LENGTH_LONG).show();
 
                                         } else {
 
-                                            Toast.makeText(getApplicationContext(), "Liga " + ID + " está relacionada a tabela Times", Toast.LENGTH_LONG).show();
+                                            android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
+                                                    CadastroLActivity.this).create();
+
+                                            alertDialog.setTitle(" ");
+
+                                            alertDialog.setMessage("Liga " + ID + " está relacionada a tabela Times");
+
+                                            alertDialog.setIcon(R.drawable.tick);
+
+                                            alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+
+                                                    finish();
+
+                                                }
+                                            });
+
+                                            alertDialog.show();
+
 
                                         }
 
@@ -201,8 +221,6 @@ public class CadastroLActivity extends AppCompatActivity {
 
                                     }
                                 });
-
-                                finish();
 
 
                             }

@@ -186,11 +186,31 @@ public class CadastroTPActivity extends AppCompatActivity {
 
                                         if (response.code() == 204) {
 
+                                            finish();
+
                                             Toast.makeText(getApplicationContext(), "Tipo do produto " + ID + " excluido com sucesso !", Toast.LENGTH_LONG).show();
 
                                         } else {
 
-                                            Toast.makeText(getApplicationContext(), "Tipo do produto " + ID + " está relacionada a tabela Produtos", Toast.LENGTH_LONG).show();
+                                            android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
+                                                    CadastroTPActivity.this).create();
+
+                                            alertDialog.setTitle(" ");
+
+                                            alertDialog.setMessage("Tipo do produto " + ID + " está relacionada a tabela Produtos");
+
+                                            alertDialog.setIcon(R.drawable.tick);
+
+                                            alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+
+                                                    finish();
+
+                                                }
+                                            });
+
+                                            alertDialog.show();
+
 
                                         }
 
@@ -202,8 +222,6 @@ public class CadastroTPActivity extends AppCompatActivity {
 
                                     }
                                 });
-
-                                finish();
 
 
                             }

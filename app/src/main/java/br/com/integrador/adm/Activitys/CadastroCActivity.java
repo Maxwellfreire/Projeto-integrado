@@ -203,7 +203,37 @@ public class CadastroCActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
 
-                                        Toast.makeText(getApplicationContext(), "Cargo " + ID + " excluido com sucesso !", Toast.LENGTH_LONG).show();
+                                        if (response.code() == 204) {
+
+                                            finish();
+
+                                            Toast.makeText(getApplicationContext(), "Cargo " + ID + " excluido com sucesso !", Toast.LENGTH_LONG).show();
+
+
+                                        } else {
+
+                                            android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
+                                                    CadastroCActivity.this).create();
+
+                                            alertDialog.setTitle(" ");
+
+                                            alertDialog.setMessage("Cargo " + ID + " possui funcionario vinculado !");
+
+                                            alertDialog.setIcon(R.drawable.tick);
+
+                                            alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+
+                                                    finish();
+
+                                                }
+                                            });
+
+                                            alertDialog.show();
+
+
+                                        }
+
 
                                     }
 
@@ -212,8 +242,6 @@ public class CadastroCActivity extends AppCompatActivity {
 
                                     }
                                 });
-
-                                finish();
 
 
                             }
@@ -234,4 +262,6 @@ public class CadastroCActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

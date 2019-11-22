@@ -192,11 +192,31 @@ public class CadastroMActivity extends AppCompatActivity {
 
                                         if (response.code() == 204) {
 
+                                            finish();
+
                                             Toast.makeText(getApplicationContext(), "Marca " + ID + " excluida com sucesso !", Toast.LENGTH_LONG).show();
 
                                         } else {
 
-                                            Toast.makeText(getApplicationContext(), "Marca " + ID + " está relacionada a tabela Produtos", Toast.LENGTH_LONG).show();
+                                            android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
+                                                    CadastroMActivity.this).create();
+
+                                            alertDialog.setTitle(" ");
+
+                                            alertDialog.setMessage("Marca " + ID + " está relacionada a tabela Produtos");
+
+                                            alertDialog.setIcon(R.drawable.tick);
+
+                                            alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+
+                                                    finish();
+
+                                                }
+                                            });
+
+                                            alertDialog.show();
+
 
                                         }
 
@@ -208,8 +228,6 @@ public class CadastroMActivity extends AppCompatActivity {
 
                                     }
                                 });
-
-                                finish();
 
 
                             }
