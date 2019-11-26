@@ -122,6 +122,7 @@ public class APIAdapterProduto extends BaseAdapter {
             campoDESC.setText(produto.getDesc());
             campoPRECO.setText(produto.getPreco());
 
+            // esse ID (5) e o numero da camisa
             if (produto.getIdTipoProduto() != 5) {
 
 
@@ -361,6 +362,7 @@ public class APIAdapterProduto extends BaseAdapter {
             campoDESC.setText(produto.getDesc());
             campoPRECO.setText(produto.getPreco());
 
+            // esse ID (5) e o numero da camisa
             if (produto.getIdTipoProduto() != 5) {
 
 

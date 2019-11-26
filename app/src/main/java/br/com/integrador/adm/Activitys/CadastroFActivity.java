@@ -195,13 +195,16 @@ public class CadastroFActivity extends AppCompatActivity {
 
                         setCelularFuncionario.setError("Celular está vazio!");
 
+                    } else if (senha.isEmpty()) {
+                        setSenhaFuncionario.setError("senha está vazia!");
+
+                    } else if (confirmaSenha.isEmpty()) {
+                        setConfirmaSFuncionario.setError("Confirma senha está vazia!");
+
                     } else if (nascfuncionario.isEmpty()) {
 
                         setNascFuncionario.setError("Data de nascimento está vazio!");
-
-
                     } else {
-
 
                         String SexoFuncionario = String.valueOf(setSexoFuncionario.getSelectedItem());
 
@@ -231,7 +234,6 @@ public class CadastroFActivity extends AppCompatActivity {
                         });
 
                         finish();
-
 
                     }
 
@@ -292,10 +294,15 @@ public class CadastroFActivity extends AppCompatActivity {
 
                         setCelularFuncionario.setError("Celular está vazio!");
 
+                    } else if (senha.isEmpty()) {
+                        setSenhaFuncionario.setError("senha está vazia!");
+
+                    } else if (confirmaSenha.isEmpty()) {
+                        setConfirmaSFuncionario.setError("Confirma senha está vazia!");
+
                     } else if (nascfuncionario.isEmpty()) {
 
                         setNascFuncionario.setError("Data de nascimento está vazio!");
-
                     } else {
 
                         String SexoFuncionario = String.valueOf(setSexoFuncionario.getSelectedItem());
@@ -328,7 +335,6 @@ public class CadastroFActivity extends AppCompatActivity {
 
 
                         finish();
-
 
                     }
 

@@ -46,7 +46,7 @@ public class CadastroLActivity extends AppCompatActivity {
         txtLiga = (TextView) findViewById(R.id.txtLiga);
 
         if (ItemLiga != null) {
-            txtLiga.setText("Atualizar Liga");
+            txtLiga.setText("Atualizar Campeonato");
             btnSalvarLiga.setText("Alterar");
             setIDLiga.setText(Integer.toString(ItemLiga.getLigaId()));
             setNomeLiga.setText(ItemLiga.getName());
@@ -89,7 +89,7 @@ public class CadastroLActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Liga> call, Response<Liga> response) {
 
-                                Toast.makeText(getApplicationContext(), "Liga cadastrada com sucesso !", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Campeonato cadastrado com sucesso !", Toast.LENGTH_LONG).show();
 
 
                             }
@@ -141,7 +141,7 @@ public class CadastroLActivity extends AppCompatActivity {
                             }
                         });
 
-                        Toast.makeText(getApplicationContext(), "Liga atualizada com sucesso !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Campeonato atualizado com sucesso !", Toast.LENGTH_LONG).show();
 
 
                         finish();
@@ -187,7 +187,7 @@ public class CadastroLActivity extends AppCompatActivity {
 
                                             finish();
 
-                                            Toast.makeText(getApplicationContext(), "Liga " + ID + " excluida com sucesso !", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getApplicationContext(), "Campeonato " + ID + " excluido com sucesso !", Toast.LENGTH_LONG).show();
 
                                         } else {
 
@@ -196,7 +196,7 @@ public class CadastroLActivity extends AppCompatActivity {
 
                                             alertDialog.setTitle(" ");
 
-                                            alertDialog.setMessage("Liga " + ID + " está relacionada a tabela Times");
+                                            alertDialog.setMessage("Campeonato " + ID + " está relacionado a tabela Times");
 
                                             alertDialog.setIcon(R.drawable.tick);
 
