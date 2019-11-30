@@ -90,6 +90,8 @@ public class CadastroTPActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(), "Tipo do produto cadastrado com sucesso !", Toast.LENGTH_LONG).show();
 
+                                finish();
+
 
                             }
 
@@ -100,8 +102,6 @@ public class CadastroTPActivity extends AppCompatActivity {
                             }
                         });
 
-
-                        finish();
 
                     }
 
@@ -129,7 +129,9 @@ public class CadastroTPActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Tipoproduto> call, Response<Tipoproduto> response) {
 
-//                            Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Tipo do produto atualizado com sucesso !", Toast.LENGTH_LONG).show();
+
+                                finish();
 
                             }
 
@@ -141,10 +143,6 @@ public class CadastroTPActivity extends AppCompatActivity {
                             }
                         });
 
-                        Toast.makeText(getApplicationContext(), "Tipo do produto atualizado com sucesso !", Toast.LENGTH_LONG).show();
-
-
-                        finish();
 
                     }
 

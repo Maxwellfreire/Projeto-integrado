@@ -223,6 +223,8 @@ public class CadastroFActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(), "Funcionario cadastrado com sucesso !", Toast.LENGTH_LONG).show();
 
+                                finish();
+
 
                             }
 
@@ -233,7 +235,6 @@ public class CadastroFActivity extends AppCompatActivity {
                             }
                         });
 
-                        finish();
 
                     }
 
@@ -320,6 +321,10 @@ public class CadastroFActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Funcionario> call, Response<Funcionario> response) {
 
+                                Toast.makeText(getApplicationContext(), "Funcionario atualizado com sucesso !", Toast.LENGTH_LONG).show();
+
+                                finish();
+
 
                             }
 
@@ -331,10 +336,6 @@ public class CadastroFActivity extends AppCompatActivity {
                             }
                         });
 
-                        Toast.makeText(getApplicationContext(), "Funcionario atualizado com sucesso !", Toast.LENGTH_LONG).show();
-
-
-                        finish();
 
                     }
 
@@ -377,6 +378,8 @@ public class CadastroFActivity extends AppCompatActivity {
 
                                         Toast.makeText(getApplicationContext(), "Funcionario " + ID + " excluido com sucesso !", Toast.LENGTH_LONG).show();
 
+                                        finish();
+
 
                                     }
 
@@ -385,8 +388,6 @@ public class CadastroFActivity extends AppCompatActivity {
 
                                     }
                                 });
-
-                                finish();
 
 
                             }

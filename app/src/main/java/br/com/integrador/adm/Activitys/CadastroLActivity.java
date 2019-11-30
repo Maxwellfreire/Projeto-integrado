@@ -91,6 +91,8 @@ public class CadastroLActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(), "Campeonato cadastrado com sucesso !", Toast.LENGTH_LONG).show();
 
+                                finish();
+
 
                             }
 
@@ -101,7 +103,6 @@ public class CadastroLActivity extends AppCompatActivity {
                             }
                         });
 
-                        finish();
 
                     }
 
@@ -129,7 +130,10 @@ public class CadastroLActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Liga> call, Response<Liga> response) {
 
-//                            Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Campeonato atualizado com sucesso !", Toast.LENGTH_LONG).show();
+
+                                finish();
+
 
                             }
 
@@ -141,10 +145,6 @@ public class CadastroLActivity extends AppCompatActivity {
                             }
                         });
 
-                        Toast.makeText(getApplicationContext(), "Campeonato atualizado com sucesso !", Toast.LENGTH_LONG).show();
-
-
-                        finish();
 
                     }
 

@@ -95,6 +95,8 @@ public class CadastroMActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(), "Marca cadastrada com sucesso !", Toast.LENGTH_LONG).show();
 
+                                finish();
+
 
                             }
 
@@ -105,8 +107,6 @@ public class CadastroMActivity extends AppCompatActivity {
                             }
                         });
 
-
-                        finish();
 
                     }
 
@@ -135,7 +135,9 @@ public class CadastroMActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Marca> call, Response<Marca> response) {
 
-//                            Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
+
+                                finish();
 
                             }
 
@@ -147,10 +149,10 @@ public class CadastroMActivity extends AppCompatActivity {
                             }
                         });
 
-                        Toast.makeText(getApplicationContext(), "Marca atualizada com sucesso !", Toast.LENGTH_LONG).show();
 
 
-                        finish();
+
+
 
                     }
 

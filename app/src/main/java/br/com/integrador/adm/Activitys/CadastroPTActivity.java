@@ -220,6 +220,8 @@ public class CadastroPTActivity extends AppCompatActivity {
 
                                     Toast.makeText(getApplicationContext(), "Produto cadastrado com sucesso !", Toast.LENGTH_LONG).show();
 
+                                    finish();
+
 
                                 }
 
@@ -230,7 +232,6 @@ public class CadastroPTActivity extends AppCompatActivity {
                                 }
                             });
 
-                            finish();
 
                         }
 
@@ -294,6 +295,8 @@ public class CadastroPTActivity extends AppCompatActivity {
 
                                     Toast.makeText(getApplicationContext(), "Produto cadastrado com sucesso !", Toast.LENGTH_LONG).show();
 
+                                    finish();
+
 
                                 }
 
@@ -304,7 +307,7 @@ public class CadastroPTActivity extends AppCompatActivity {
                                 }
                             });
 
-                            finish();
+
                         }
 
 
@@ -383,7 +386,9 @@ public class CadastroPTActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Produto> call, Response<Produto> response) {
 
+                                Toast.makeText(getApplicationContext(), "Produto atualizado com sucesso !", Toast.LENGTH_LONG).show();
 
+                                finish();
 
                             }
 
@@ -394,11 +399,6 @@ public class CadastroPTActivity extends AppCompatActivity {
 
                             }
                         });
-
-                        Toast.makeText(getApplicationContext(), "Produto atualizado com sucesso !", Toast.LENGTH_LONG).show();
-
-
-                        finish();
 
 
                     }
@@ -440,6 +440,8 @@ public class CadastroPTActivity extends AppCompatActivity {
 
                                         Toast.makeText(getApplicationContext(), "Produto " + ID + " excluido com sucesso !", Toast.LENGTH_LONG).show();
 
+                                        finish();
+
                                     }
 
                                     @Override
@@ -448,7 +450,7 @@ public class CadastroPTActivity extends AppCompatActivity {
                                     }
                                 });
 
-                                finish();
+
                             }
                         });
                 // Setting Negative "NO" Button
