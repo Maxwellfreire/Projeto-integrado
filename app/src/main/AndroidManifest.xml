@@ -20,8 +20,6 @@
         <activity android:name=".Activitys.VisualActivity" />
         <activity android:name=".Activitys.CadastroPActivity" />
         <activity android:name=".Activitys.ProdutoActivity" />
-        <activity android:name=".Activitys.CadastroCDActivity" />
-        <activity android:name=".Activitys.CupomdescontoActivity" />
         <activity android:name=".Activitys.CadastroTActivity" />
         <activity android:name=".Activitys.TimeActivity" />
         <activity android:name=".Activitys.CadastroTPActivity" />

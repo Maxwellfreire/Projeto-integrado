@@ -7,14 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import br.com.integrador.adm.Activitys.CargoActivity;
-import br.com.integrador.adm.Activitys.CupomdescontoActivity;
 import br.com.integrador.adm.Activitys.FuncionarioActivity;
 import br.com.integrador.adm.Activitys.LigaActivity;
 import br.com.integrador.adm.Activitys.MarcaActivity;
 import br.com.integrador.adm.Activitys.ProdutoActivity;
 import br.com.integrador.adm.Activitys.TimeActivity;
 import br.com.integrador.adm.Activitys.TipoprodutoActivity;
-import br.com.integrador.adm.model.Funcionario;
 
 public class InicioActivity extends AppCompatActivity {
 
@@ -48,9 +46,6 @@ public class InicioActivity extends AppCompatActivity {
 
     }
 
-    public void btnCDesconto(View view) {
-        startActivity(new Intent(this, CupomdescontoActivity.class));
-    }
 
     public void btnProduto(View view) {
         startActivity(new Intent(this, ProdutoActivity.class));
