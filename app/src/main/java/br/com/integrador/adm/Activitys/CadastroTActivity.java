@@ -38,9 +38,9 @@ public class CadastroTActivity extends AppCompatActivity {
 
     Spinner setEstadoTime, setRegiaoTime, setTipoTimeTime, setLigasTime, regiaoS, estadoS, tipotimeS, ligasdotime;
 
-    String[] SpinnerEstado = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT",
+    String[] SpinnerEstado = {" ", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT",
             "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
-    String[] SpinnerRegiao = {"Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"};
+    String[] SpinnerRegiao = {" ", "Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"};
 
     String[] SpinnerTipodotime = {"Nacional", "Seleção", "Internacional"};
 
@@ -89,13 +89,13 @@ public class CadastroTActivity extends AppCompatActivity {
             setIDTime.setText(Integer.toString(ItemTime.getIdTime()));
             setNomeTime.setText(ItemTime.getNameTime());
 
-            String[] regiao = {ItemTime.getRegiao(), "Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"};
+            String[] regiao = {ItemTime.getRegiao(), " ", "Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"};
             regiaoS = (Spinner) findViewById(R.id.setRegiaoTime);
             ArrayAdapter<String> regiaoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, regiao);
             regiaoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             regiaoS.setAdapter(regiaoAdapter);
 
-            String[] estado = {ItemTime.getEstado(), "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
+            String[] estado = {ItemTime.getEstado(), " ", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
             estadoS = (Spinner) findViewById(R.id.setEstadoTime);
             ArrayAdapter<String> estadoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, estado);
             estadoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

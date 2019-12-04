@@ -122,8 +122,8 @@ public class APIAdapterProduto extends BaseAdapter {
             campoDESC.setText(produto.getDesc());
             campoPRECO.setText(produto.getPreco());
 
-            // esse ID (17) e o numero da camisa
-            if (produto.getIdTipoProduto() != 17) {
+            // esse ID (1) e o numero da camisa
+            if (produto.getIdTipoProduto() != 1) {
 
 
                 Retrofit retrofitt = APIClient.getClient();
@@ -362,8 +362,8 @@ public class APIAdapterProduto extends BaseAdapter {
             campoDESC.setText(produto.getDesc());
             campoPRECO.setText(produto.getPreco());
 
-            // esse ID (17) e o numero da camisa
-            if (produto.getIdTipoProduto() != 17) {
+            // esse ID (1) e o numero da camisa
+            if (produto.getIdTipoProduto() != 1) {
 
 
                 Retrofit retrofitt = APIClient.getClient();
